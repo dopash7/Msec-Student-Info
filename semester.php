@@ -106,15 +106,15 @@
 
      
             <a class="w3-bar-item w3-button active" href="#"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Students</a>
-            <a class="w3-bar-item w3-button" href="personaldetails.php?name=<?php echo'$_GET['name']' ?>&batch=<?php echo'$_GET['batch']' ?>"><i class='far fa-edit'>"><i class='far fa-folder-open' ></i> Personal Details</a>
-            <a class="w3-bar-item w3-button" href="marks.php?name=<?php echo'$_GET['name']' ?>&batch=<?php echo'$_GET['batch']' ?>"><i class='far fa-edit'></i> Marks</a>
-            <a class="w3-bar-item w3-button" href="aep.php?name=<?php echo'$_GET['name']' ?>&batch=<?php echo'$_GET['batch']' ?>"><i class='far fa-edit'>"><i class='fas fa-book-reader'></i> AEP</a>
-            <a class="w3-bar-item w3-button" href="weak.php?name=<?php echo'$_GET['name']' ?>&batch=<?php echo'$_GET['batch']' ?>"><i class='far fa-edit'>"><i class='fas fa-chalkboard-teacher'></i> Weak</a>
-             <a class="w3-bar-item w3-button" href="attendance.php?name=<?php echo'$_GET['name']' ?>&batch=<?php echo'$_GET['batch']' ?>"><i class='far fa-edit'>"><i class='far fa-calendar-check'></i> Attendance</a>
-            <a class="w3-bar-item w3-button" href="ecube.php?name=<?php echo'$_GET['name']' ?>&batch=<?php echo'$_GET['batch']' ?>"><i class='far fa-edit'>"><i class='fas fa-users'></i> E-Cube</a>
-            <a class="w3-bar-item w3-button" href="intern.php?name=<?php echo'$_GET['name']' ?>&batch=<?php echo'$_GET['batch']' ?>"><i class='far fa-edit'>"><i class="fa fa-laptop" aria-hidden="true"></i> Intern</a>
-            <a class="w3-bar-item w3-button" href="iv.php?name=<?php echo'$_GET['name']' ?>&batch=<?php echo'$_GET['batch']' ?>"><i class='far fa-edit'>"><i class='fas fa-map-marked-alt'></i> Industrial Visit</a>
-            <a class="w3-bar-item w3-button" href="summary.php?name=<?php echo'$_GET['name']' ?>&batch=<?php echo'$_GET['batch']' ?>"><i class='far fa-edit'>"><i class='fas fa-user-graduate'></i> Indvidual Summary</a>
+            <a class="w3-bar-item w3-button" href="personaldetails.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch'] ;?>"><i class='far fa-folder-open' ></i> Personal Details</a>
+            <a class="w3-bar-item w3-button" href="marks.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='far fa-edit'></i> Marks</a>
+            <a class="w3-bar-item w3-button" href="aep.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-book-reader'></i> AEP</a>
+            <a class="w3-bar-item w3-button" href="weak.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-chalkboard-teacher'></i> Weak</a>
+             <a class="w3-bar-item w3-button" href="attendance.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='far fa-calendar-check'></i> Attendance</a>
+            <a class="w3-bar-item w3-button" href="ecube.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-users'></i> E-Cube</a>
+            <a class="w3-bar-item w3-button" href="intern.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class="fa fa-laptop" aria-hidden="true"></i> Intern</a>
+            <a class="w3-bar-item w3-button" href="iv.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-map-marked-alt'></i> Industrial Visit</a>
+            <a class="w3-bar-item w3-button" href="summary.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-user-graduate'></i> Indvidual Summary</a>
            
         </nav>
 
@@ -141,11 +141,12 @@
 
  <?php
     // Include config file
-    require_once "auth.php";
+    require_once "library/auth.php";
     
+    $db_conn=get_db_connection();
     // Attempt select query execution
-    $sql = "SELECT * FROM $name ";
-    if($result = mysqli_query($db, $sql)){
+    $sql = "SELECT * FROM msec.".$_GET['batch'] ;
+    if($result = mysqli_query($db_conn, $sql)){
         if(mysqli_num_rows($result) > 0){
             echo '<table  class="table table-bordered table-striped" id="customers">';
                 echo "<thead>";
@@ -161,7 +162,7 @@
                     echo "<tr>";
                         echo "<td>" . $row['id'] . "</td>";
                         echo "<td>" . $row['name'] . "</td>";
-                        echo "<td>" . $row['reg'] . "</td>";
+                        echo "<td>" . $row['rollno'] . "</td>";
                    
                         echo "<td>";
                             
@@ -182,7 +183,7 @@
     }
 
     // Close connection
-    mysqli_close($db);
+    mysqli_close($db_conn);
     ?>
 
 
