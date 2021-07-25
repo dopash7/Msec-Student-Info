@@ -1,3 +1,20 @@
+<?php
+include 'library/auth.php';
+
+if(isset($_COOKIE['username']) and isset($_COOKIE['token'])) 
+{
+  $username = $_COOKIE['username'];
+  $token = $_COOKIE['token'];
+
+  if(!verify_session($username, $token)){
+    header("Location: index.php");
+  }
+} 
+else {
+  header("Location: index.php");
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,202 +26,202 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
-        body {font-family: sans-serif}
-        .w3-bar-block .w3-bar-item {
-          padding: 16px;
-          font-weight: bold;
-        }
+    body {font-family: sans-serif}
+    .w3-bar-block .w3-bar-item {
+      padding: 16px;
+      font-weight: bold;
+  }
 
-        .w3-bar-item{
-                    padding: 16px;
-                    letter-spacing: 1px;
-                    font-weight: bold;
-                    background-color:#1E6091;
-                    color:#D9ED92;
-                }
-                .w3-bar-item:hover {
-                    padding: 16px;
-                    letter-spacing: 1px;
-                    font-weight: bold;
-                    color:#1E6091!important;
-                    background-color:#D9ED92!important;
-                    
-                }
-                .bluecolor {
-                    background-color:#1E6091!important;
-                }
-                .w3-leftbar{
-                    border-left:#1E6091!important;
-                }
-
-        #customers {
-          font-family: sans-serif, Arial, Helvetica ;
-          border-collapse: collapse;
-          width: 100%;
-
-         box-shadow:5px 5px 5px 5px grey; 
-        }
-
-        #customers td, #customers th {
-          border: 1px solid #ddd;
-          padding: 8px;
-        }
-
-        #customers tr:nth-child(even){background-color: #f2f2f2;}
-
-        #customers tr:hover {background-color: #ddd;}
-
-        #customers th {
-          padding-top: 12px;
-          padding-bottom: 12px;
-          text-align: left;
-          background-color: rgba(52, 160, 164, 0.4);
-          color: #184E77;
-        }
-
-
-
-
-        .topnav {
-          overflow: hidden;
-
-        }
-
-        .topnav a {
-          float: left;
-          display: block;
-          color: #D9ED92;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-          font-size: 17px;
-          border-left: 7px solid transparent;
-        }
-
-
-
-        .topnav a.active {
-          border-left: 7px solid #76C893;
-          color: #76C893;
-          background-color: rgba(0, 0, 0, 0.3);
-
-
-        }
-    </style>
-</head>
-    <body>
-
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card bluecolor topnav" style="z-index:3;width:250px;" id="mySidebar">
-            <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="home.php"><p style="width:80%; font-size: 150%; text-align: center; text-shadow: 1px 1px 3px #000000">MSEC CSE</p> </a>
-            <a class="w3-bar-item w3-leftbar w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
-
-     
-            <a class="w3-bar-item w3-button active" href="#"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Students</a>
-            <a class="w3-bar-item w3-button" href="personaldetails.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch'] ;?>"><i class='far fa-folder-open' ></i> Personal Details</a>
-            <a class="w3-bar-item w3-button" href="marks.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='far fa-edit'></i> Marks</a>
-            <a class="w3-bar-item w3-button" href="aep.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-book-reader'></i> AEP</a>
-            <a class="w3-bar-item w3-button" href="weak.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-chalkboard-teacher'></i> Weak</a>
-             <a class="w3-bar-item w3-button" href="attendance.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='far fa-calendar-check'></i> Attendance</a>
-            <a class="w3-bar-item w3-button" href="ecube.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-users'></i> E-Cube</a>
-            <a class="w3-bar-item w3-button" href="intern.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class="fa fa-laptop" aria-hidden="true"></i> Intern</a>
-            <a class="w3-bar-item w3-button" href="iv.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-map-marked-alt'></i> Industrial Visit</a>
-            <a class="w3-bar-item w3-button" href="summary.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-user-graduate'></i> Indvidual Summary</a>
-           
-        </nav>
-
-
- <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
-
-            <div class="w3-main" style="margin-left:250px;">
-
-                <div id="myTop" class="w3-container w3-top w3-theme w3-large bluecolor">
-                    <p><i class="fa fa-bars w3-button w3-teal w3-hide-large w3-xlarge " onclick="w3_open()"></i>
-                    <span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 1</span></p>
-                </div>
-
-                <header class="w3-container w3-theme bluecolor" style="padding:64px 32px; text-align:center;">
-                    <h1 class="w3-xxxlarge" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">BATCH 2018-2022</h1>
-                    <H2 class="w3-xxxlarge" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 1</H2>
-                </header>
-
-<div class="w3-container" style="padding:32px">
- <a href="" class="btn btn-success pull-left" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-plus"></i><b>  ADD</b></a> &nbsp; &nbsp;
-<i class="fa fa-search" aria-hidden="true" style=" "></i>&nbsp;<input style="height: 35px; border-color:#76C893; border-radius: 10%; " type="text" placeholder=" Search..">
-  <a href="" class="btn btn-success pull-right" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-download" aria-hidden="true"></i><b>  EXPORT</b></a>
- <br><br><br>
-
- <?php
-    // Include config file
-    require_once "library/auth.php";
+  .w3-bar-item{
+    padding: 16px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    background-color:#1E6091;
+    color:#D9ED92;
+}
+.w3-bar-item:hover {
+    padding: 16px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color:#1E6091!important;
+    background-color:#D9ED92!important;
     
-    $db_conn=get_db_connection();
+}
+.bluecolor {
+    background-color:#1E6091!important;
+}
+.w3-leftbar{
+    border-left:#1E6091!important;
+}
+
+#customers {
+  font-family: sans-serif, Arial, Helvetica ;
+  border-collapse: collapse;
+  width: 100%;
+
+  box-shadow:5px 5px 5px 5px grey; 
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgba(52, 160, 164, 0.4);
+  color: #184E77;
+}
+
+
+
+
+.topnav {
+  overflow: hidden;
+
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #D9ED92;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  border-left: 7px solid transparent;
+}
+
+
+
+.topnav a.active {
+  border-left: 7px solid #76C893;
+  color: #76C893;
+  background-color: rgba(0, 0, 0, 0.3);
+
+
+}
+</style>
+</head>
+<body>
+
+    <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card bluecolor topnav" style="z-index:3;width:250px;" id="mySidebar">
+        <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="home.php"><p style="width:80%; font-size: 150%; text-align: center; text-shadow: 1px 1px 3px #000000">MSEC CSE</p> </a>
+        <a class="w3-bar-item w3-leftbar w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+
+        
+        <a class="w3-bar-item w3-button active" href="#"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Students</a>
+        <a class="w3-bar-item w3-button" href="personaldetails.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch'] ;?>"><i class='far fa-folder-open' ></i> Personal Details</a>
+        <a class="w3-bar-item w3-button" href="mark.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='far fa-edit'></i> Marks</a>
+        <a class="w3-bar-item w3-button" href="aep.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-book-reader'></i> AEP</a>
+        <a class="w3-bar-item w3-button" href="weak.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-chalkboard-teacher'></i> Weak</a>
+        <a class="w3-bar-item w3-button" href="attendance.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='far fa-calendar-check'></i> Attendance</a>
+        <a class="w3-bar-item w3-button" href="ecube.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-users'></i> E-Cube</a>
+        <a class="w3-bar-item w3-button" href="intern.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class="fa fa-laptop" aria-hidden="true"></i> Intern</a>
+        <a class="w3-bar-item w3-button" href="iv.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-map-marked-alt'></i> Industrial Visit</a>
+        <a class="w3-bar-item w3-button" href="summary.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-user-graduate'></i> Indvidual Summary</a>
+        
+    </nav>
+
+
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+    <div class="w3-main" style="margin-left:250px;">
+
+        <div id="myTop" class="w3-container w3-top w3-theme w3-large bluecolor">
+            <p><i class="fa fa-bars w3-button w3-teal w3-hide-large w3-xlarge " onclick="w3_open()"></i>
+                <span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 1</span></p>
+            </div>
+
+            <header class="w3-container w3-theme bluecolor" style="padding:64px 32px; text-align:center;">
+                <h1 class="w3-xxxlarge" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">BATCH 2018-2022</h1>
+                <H2 class="w3-xxxlarge" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 1</H2>
+            </header>
+
+            <div class="w3-container" style="padding:32px">
+               <a href="" class="btn btn-success pull-left" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-plus"></i><b>  ADD</b></a> &nbsp; &nbsp;
+               <i class="fa fa-search" aria-hidden="true" style=" "></i>&nbsp;<input style="height: 35px; border-color:#76C893; border-radius: 10%; " type="text" placeholder=" Search..">
+               <a href="" class="btn btn-success pull-right" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-download" aria-hidden="true"></i><b>  EXPORT</b></a>
+               <br><br><br>
+
+               <?php
+    // Include config file
+               require_once "library/auth.php";
+               
+               $db_conn=get_db_connection();
     // Attempt select query execution
-    $sql = "SELECT * FROM msec.".$_GET['batch'] ;
-    if($result = mysqli_query($db_conn, $sql)){
-        if(mysqli_num_rows($result) > 0){
-            echo '<table  class="table table-bordered table-striped" id="customers">';
-                echo "<thead>";
+               $sql = "SELECT * FROM msec.".$_GET['batch'] ;
+               if($result = mysqli_query($db_conn, $sql)){
+                if(mysqli_num_rows($result) > 0){
+                    echo '<table  class="table table-bordered table-striped" id="customers">';
+                    echo "<thead>";
                     echo "<tr>";
-                        echo "<th>ID</th>";
-                        echo "<th>NAME</th>";
-                        echo "<th>REGISTER NUMBER</th>";
-                        echo "<th>ACTION</th>";
+                    echo "<th>ID</th>";
+                    echo "<th>NAME</th>";
+                    echo "<th>REGISTER NUMBER</th>";
+                    echo "<th>ACTION</th>";
                     echo "</tr>";
-                echo "</thead>";
-                echo "<tbody>";
-                while($row = mysqli_fetch_array($result)){
-                    echo "<tr>";
+                    echo "</thead>";
+                    echo "<tbody>";
+                    while($row = mysqli_fetch_array($result)){
+                        echo "<tr>";
                         echo "<td>" . $row['id'] . "</td>";
                         echo "<td>" . $row['name'] . "</td>";
                         echo "<td>" . $row['rollno'] . "</td>";
-                   
+                        
                         echo "<td>";
-                            
-                            echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
-                            echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
+                        
+                        echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
+                        echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
                         echo "</td>";
-                    echo "</tr>";
-                }
-                echo "</tbody>";                            
-            echo "</table>";
+                        echo "</tr>";
+                    }
+                    echo "</tbody>";                            
+                    echo "</table>";
             // Free result set
-            mysqli_free_result($result);
-        } else{
-            echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
-        }
-    } else{
-        echo "Oops! Something went wrong. Please try again later.";
-    }
+                    mysqli_free_result($result);
+                } else{
+                    echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+                }
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
 
     // Close connection
-    mysqli_close($db_conn);
-    ?>
+            mysqli_close($db_conn);
+            ?>
 
 
-</div>
- <footer class="w3-container w3-theme bluecolor" style="padding:32px; text-align: center; color:white; text-decoration: none;font-size:180%;">
-    <p>&copy; <a href="http://www.msec.edu.in/" title="W3.CSS" target="_blank" class="w3-hover-text-green" style="color:white; ">MSEC</a></p>
-</footer>
-     
-</div>
+        </div>
+        <footer class="w3-container w3-theme bluecolor" style="padding:32px; text-align: center; color:white; text-decoration: none;font-size:180%;">
+            <p>&copy; <a href="http://www.msec.edu.in/" title="W3.CSS" target="_blank" class="w3-hover-text-green" style="color:white; ">MSEC</a></p>
+        </footer>
+        
+    </div>
 
-<script>
+    <script>
     // Open and close the sidebar on medium and small screens
     function w3_open() {
       document.getElementById("mySidebar").style.display = "block";
       document.getElementById("myOverlay").style.display = "block";
-    }
+  }
 
-    function w3_close() {
+  function w3_close() {
       document.getElementById("mySidebar").style.display = "none";
       document.getElementById("myOverlay").style.display = "none";
-    }
+  }
 
     // Change style of top container on scroll
     window.onscroll = function() {myFunction()};
@@ -212,11 +229,11 @@
       if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
         document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
         document.getElementById("myIntro").classList.add("w3-show-inline-block");
-      } else {
+    } else {
         document.getElementById("myIntro").classList.remove("w3-show-inline-block");
         document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
-      }
     }
+}
 
     // Accordions
     function myAccordion(id) {
@@ -224,13 +241,13 @@
       if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
         x.previousElementSibling.className += " w3-theme";
-      } else { 
+    } else { 
         x.className = x.className.replace("w3-show", "");
         x.previousElementSibling.className = 
         x.previousElementSibling.className.replace(" w3-theme", "");
-      }
     }
+}
 </script>
-     
+
 </body>
 </html> 

@@ -57,7 +57,7 @@ function do_signup($username, $password,$emailid) {
 3. If password is right, set cookies.
  */
 
- function do_login($username, $password) {
+function do_login($username, $password) {
 	$hashed_passwd = get_hashed_passwd($password);
 	$query   = "SELECT * FROM msec.main WHERE user_name='$username' AND password='$hashed_passwd';";
 	$db_conn = get_db_connection();
@@ -76,8 +76,8 @@ function do_signup($username, $password,$emailid) {
 2. Set the proper expiry time for the same as the cookie.
  */
 function add_session($username, $token, $expiry) {
-	 $mysqltime = date('Y-m-d H:i:s', $expiry);
-	 $query = "INSERT INTO `msec`.`session` (`user_name`, `token`, `expiry`) VALUES ('$username', '$token', '$mysqltime');";
+	$mysqltime = date('Y-m-d H:i:s', $expiry);
+	$query = "INSERT INTO `msec`.`session` (`user_name`, `token`, `expiry`) VALUES ('$username', '$token', '$mysqltime');";
 
 	$db_conn = get_db_connection();
 	if (mysqli_query($db_conn, $query)) {

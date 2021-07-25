@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2021 at 01:47 PM
+-- Generation Time: Jul 25, 2021 at 08:56 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -41,6 +41,14 @@ CREATE TABLE `batch1` (
   `address` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `batch1`
+--
+
+INSERT INTO `batch1` (`id`, `rollno`, `name`, `fathername`, `mothername`, `dob`, `mail`, `schoolname`, `sslc`, `hsc`, `address`) VALUES
+(3, '311518104001', 'Aadithya', 'Umasankhar', 'revathi', '11-08-2001', 'adithay@gmail.com', 'kendriya vidyalaya matriculation school', '90', '85', '9-5,arcot road,kodambakkam,chennai-24.'),
+(4, '311518104002', 'Abijith', 'ravi', 'rekha', '01-07-2000', 'abijith@gmail.com', 'velammal matriculation higher secondary school', '95', '90', '10,2nd street,tambaram,chennai-70.');
+
 -- --------------------------------------------------------
 
 --
@@ -72,6 +80,54 @@ CREATE TABLE `batch1sem1` (
   `gpa` varchar(5) NOT NULL,
   `cgpa` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `batch1sem1`
+--
+
+INSERT INTO `batch1sem1` (`id`, `rollno`, `name`, `attendance`, `office_name`, `domain`, `duration_intern`, `start_intern`, `end_intern`, `ecube_topic`, `company_name`, `visit_date`, `summary_iv`, `comm_eng`, `math`, `eng_phy`, `eng_che`, `pspp`, `eng_gra`, `pspplab`, `pclab`, `gpa`, `cgpa`) VALUES
+(1, '311518104001', 'Aadithya', 50, 'infosys', 'software developer', 7, '10-11-2019', '17-11-2019', 'Image processing in Agriculture', 'Zoho Corporation ltd', '10-10-2019', 'The industrial visit was based on the work life of the employees in the office and the upcoming products which are available in zoho', 'O', 'U', 'A+', 'O', 'A', 'A+', 'O', 'O', '9.16', '9.16'),
+(2, '311518104002', 'Abijith', 50, 'infosys', 'software developer', 7, '10-11-2019', '17-11-2019', 'Bit coin', 'Zoho Corporation ltd', '10-10-2019', 'The industrial visit was based on the work life of the employees in the office and the upcoming products which are available in zoho', 'O', 'A+', 'A+', 'A', 'O', 'A', 'O', 'O', '9.16', '9.16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `batch1sem2`
+--
+
+CREATE TABLE `batch1sem2` (
+  `id` int(10) NOT NULL,
+  `rollno` varchar(15) NOT NULL,
+  `name` varchar(40) NOT NULL,
+  `attendance` int(10) NOT NULL,
+  `office_name` varchar(50) NOT NULL,
+  `domain` varchar(50) NOT NULL,
+  `duration_intern` int(5) NOT NULL,
+  `start_intern` varchar(15) NOT NULL,
+  `end_intern` varchar(15) NOT NULL,
+  `ecube_topic` varchar(50) NOT NULL,
+  `company_name` varchar(50) NOT NULL,
+  `visit_date` varchar(15) NOT NULL,
+  `summary_iv` varchar(200) NOT NULL,
+  `tech_eng` varchar(5) NOT NULL,
+  `math` varchar(5) NOT NULL,
+  `phy_is` varchar(5) NOT NULL,
+  `beeme` varchar(5) NOT NULL,
+  `evs` varchar(5) NOT NULL,
+  `p_in_c` varchar(5) NOT NULL,
+  `eplab` varchar(5) NOT NULL,
+  `clab` varchar(5) NOT NULL,
+  `gpa` varchar(5) NOT NULL,
+  `cgpa` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `batch1sem2`
+--
+
+INSERT INTO `batch1sem2` (`id`, `rollno`, `name`, `attendance`, `office_name`, `domain`, `duration_intern`, `start_intern`, `end_intern`, `ecube_topic`, `company_name`, `visit_date`, `summary_iv`, `tech_eng`, `math`, `phy_is`, `beeme`, `evs`, `p_in_c`, `eplab`, `clab`, `gpa`, `cgpa`) VALUES
+(1, '311518104001', 'Aadithya', 50, 'tcs', 'software developer', 7, '10-02-2020', '17-02-2020', 'Big Data using ml', 'Cognizant', '10-01-2020', 'We leanred about the company and the atmosphere and working style', 'A', 'B+', 'A+', 'A', 'A+', 'O', 'O', 'O', '8.67', '8.91'),
+(2, '311518104002', 'Abijith', 50, 'tcs', 'software developer', 7, '10-02-2020', '17-02-2020', 'Steganography', 'cognizant', '10-01-2020', 'We leanred about the company and the atmosphere and working style', 'O', 'A+', 'A', 'A', 'O', 'O', 'O', 'O', '9.34', '9.26');
 
 -- --------------------------------------------------------
 
@@ -123,7 +179,9 @@ INSERT INTO `session` (`id`, `user_name`, `token`, `expiry`, `active`) VALUES
 (20, 'mainuser', 'e31998c0188940e3b20f868427ff4ec4', '2021-07-18 15:29:21', 1),
 (21, 'mainuser', '00f6adfe1d8ba0dd052cf02cf8941b81', '2021-07-18 15:30:00', 1),
 (22, 'mainuser', 'a6742d818be6838039186567656017b0', '2021-07-18 21:34:48', 1),
-(23, 'mainuser', '9e3fb463c53e10b5245a426a9d594221', '2021-07-21 17:50:58', 1);
+(23, 'mainuser', '9e3fb463c53e10b5245a426a9d594221', '2021-07-21 17:50:58', 1),
+(24, 'mainuser', 'dce1f946c0419347c82872f83742bdbc', '2021-07-22 19:02:44', 1),
+(25, 'mainuser', '865fbf9fd679e526da65ef4577e2a381', '2021-07-25 10:13:15', 1);
 
 --
 -- Indexes for dumped tables
@@ -140,6 +198,13 @@ ALTER TABLE `batch1`
 -- Indexes for table `batch1sem1`
 --
 ALTER TABLE `batch1sem1`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `rollno` (`rollno`);
+
+--
+-- Indexes for table `batch1sem2`
+--
+ALTER TABLE `batch1sem2`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `rollno` (`rollno`);
 
@@ -163,13 +228,19 @@ ALTER TABLE `session`
 -- AUTO_INCREMENT for table `batch1`
 --
 ALTER TABLE `batch1`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `batch1sem1`
 --
 ALTER TABLE `batch1sem1`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `batch1sem2`
+--
+ALTER TABLE `batch1sem2`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `main`
@@ -181,7 +252,7 @@ ALTER TABLE `main`
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
