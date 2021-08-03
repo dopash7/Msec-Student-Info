@@ -19,7 +19,7 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MSEC CSE</title>
+    <title>PERSONAL DETAILS | MSEC</title>
     <link rel="icon" href="logo.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -66,7 +66,7 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
   border-collapse: collapse;
   width: 100%;
 
-  box-shadow:5px 5px 5px 5px grey; 
+  
 }
 
 #customers td, #customers th {
@@ -87,13 +87,6 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
 }
 
 
-
-
-.topnav {
-  overflow: hidden;
-
-}
-
 .topnav a {
   float: left;
   display: block;
@@ -105,15 +98,12 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
   border-left: 7px solid transparent;
 }
 
-
-
 .topnav a.active {
   border-left: 7px solid #76C893;
   color: #76C893;
   background-color: rgba(0, 0, 0, 0.3);
-
-
 }
+ td {overflow:hidden; white-space:nowrap}
 </style>
 </head>
 <body>
@@ -123,8 +113,8 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
         <a class="w3-bar-item w3-leftbar w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
         
-        <a class="w3-bar-item w3-button active" href="#"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Students</a>
-        <a class="w3-bar-item w3-button" href="personaldetails.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch'] ;?>"><i class='far fa-folder-open' ></i> Personal Details</a>
+        <a class="w3-bar-item w3-button" href="#"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Students</a>
+        <a class="w3-bar-item w3-button active" href="personaldetails.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch'] ;?>"><i class='far fa-folder-open' ></i> Personal Details</a>
         <a class="w3-bar-item w3-button" href="mark.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='far fa-edit'></i> Marks</a>
         <a class="w3-bar-item w3-button" href="aep.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-book-reader'></i> AEP</a>
         <a class="w3-bar-item w3-button" href="weak.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-chalkboard-teacher'></i> Weak</a>
@@ -250,12 +240,21 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
                $sql = "SELECT * FROM msec.".$_GET['batch'] ;
                if($result = mysqli_query($db_conn, $sql)){
                 if(mysqli_num_rows($result) > 0){
+                    echo '<div style="overflow-x:auto;">';
                     echo '<table  class="table table-bordered table-striped" id="customers">';
                     echo "<thead>";
                     echo "<tr>";
                     echo "<th>ID</th>";
                     echo "<th>NAME</th>";
                     echo "<th>REGISTER NUMBER</th>";
+                    echo "<th>FATHER NAME</th>";
+                    echo "<th>MOTHER NAME</th>";
+                    echo "<th>DATE OF BIRTH</th>";
+                    echo "<th>MAIL</th>";
+                    echo "<th>SCHOOL NAME</th>";
+                    echo "<th>SSLC(10th)</th>";
+                    echo "<th>HSC(12th)</th>";
+                    echo "<th>ADDRESS</th>";
                     echo "<th>ACTION</th>";
                     echo "</tr>";
                     echo "</thead>";
@@ -265,7 +264,14 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
                         echo "<td>" . $row['id'] . "</td>";
                         echo "<td>" . $row['name'] . "</td>";
                         echo "<td>" . $row['rollno'] . "</td>";
-                        
+                        echo "<td>" . $row['fathername'] . "</td>";
+                        echo "<td>" . $row['mothername'] . "</td>";
+                        echo "<td>" . $row['dob'] . "</td>";
+                        echo "<td>" . $row['mail'] . "</td>";
+                        echo "<td>" . $row['schoolname'] . "</td>";
+                        echo "<td>" . $row['sslc'] . "</td>";
+                        echo "<td>" . $row['hsc'] . "</td>";
+                        echo "<td>" . $row['address'] . "</td>";
                         echo "<td>";
                         
                         echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
@@ -275,6 +281,7 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
                     }
                     echo "</tbody>";                            
                     echo "</table>";
+                    echo"</div>";
             // Free result set
                     mysqli_free_result($result);
                 } else{

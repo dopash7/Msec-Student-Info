@@ -195,9 +195,7 @@ $db_conn=get_db_connection();
           background-color: rgba(52, 160, 164, 0.4);
           color: #184E77;
         }
-        .topnav {
-          overflow: hidden;
-        }
+      
         .topnav a {
           float: left;
           display: block;
@@ -250,7 +248,40 @@ $db_conn=get_db_connection();
 
                     <div id="myTop" class="w3-container w3-top w3-theme w3-large bluecolor">
                         <p><i class="fa fa-bars w3-button w3-teal w3-hide-large w3-xlarge " onclick="w3_open()"></i>
-                        <span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 1</span></p>
+                        <?php
+                if($sem[1]=='sem1')
+                    {
+                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 1</span>';
+                    }
+                    else if($sem[1]=='sem2')
+                    {
+                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;margin-top:20px;">Semester 2</span>';
+                    }
+                    else if($sem[1]=='sem3')
+                    {
+                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 3</span>';
+                    }
+                    else if($sem[1]=='sem4')
+                    {
+                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 4</span>';
+                    }
+                    else if($sem[1]=='sem5')
+                    {
+                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 5</span>';
+                    }
+                    else if($sem[1]=='sem6')
+                    {
+                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 6</span>';
+                    }
+                    else if($sem[1]=='sem7')
+                    {
+                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 7</span>';
+                    }
+                    else if($sem[1]=='sem8')
+                    {
+                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 8</span>';
+                    }
+                   ?></p>
                     </div>
 
                     <header class="w3-container w3-theme bluecolor" style="padding:64px 32px; text-align:center;">
