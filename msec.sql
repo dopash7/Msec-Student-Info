@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 25, 2021 at 08:56 AM
+-- Generation Time: Aug 10, 2021 at 01:12 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -46,8 +46,8 @@ CREATE TABLE `batch1` (
 --
 
 INSERT INTO `batch1` (`id`, `rollno`, `name`, `fathername`, `mothername`, `dob`, `mail`, `schoolname`, `sslc`, `hsc`, `address`) VALUES
-(3, '311518104001', 'Aadithya', 'Umasankhar', 'revathi', '11-08-2001', 'adithay@gmail.com', 'kendriya vidyalaya matriculation school', '90', '85', '9-5,arcot road,kodambakkam,chennai-24.'),
-(4, '311518104002', 'Abijith', 'ravi', 'rekha', '01-07-2000', 'abijith@gmail.com', 'velammal matriculation higher secondary school', '95', '90', '10,2nd street,tambaram,chennai-70.');
+(1, '311518104001', 'Aadithya', 'Umasankhar', 'revathi', '11-08-2001', 'adithay@gmail.com', 'kendriya vidyalaya matriculation school', '90', '85', '9-5,arcot road,kodambakkam,chennai-24.'),
+(2, '311518104002', 'Abijith', 'ravi', 'rekha', '01-07-2000', 'abijith@gmail.com', 'velammal matriculation higher secondary school', '95', '90', '10,2nd street,tambaram,chennai-70.');
 
 -- --------------------------------------------------------
 
@@ -77,8 +77,8 @@ CREATE TABLE `batch1sem1` (
   `eng_gra` varchar(5) NOT NULL,
   `pspplab` varchar(5) NOT NULL,
   `pclab` varchar(5) NOT NULL,
-  `gpa` varchar(5) NOT NULL,
-  `cgpa` varchar(5) NOT NULL
+  `gpa` float NOT NULL,
+  `cgpa` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -86,8 +86,8 @@ CREATE TABLE `batch1sem1` (
 --
 
 INSERT INTO `batch1sem1` (`id`, `rollno`, `name`, `attendance`, `office_name`, `domain`, `duration_intern`, `start_intern`, `end_intern`, `ecube_topic`, `company_name`, `visit_date`, `summary_iv`, `comm_eng`, `math`, `eng_phy`, `eng_che`, `pspp`, `eng_gra`, `pspplab`, `pclab`, `gpa`, `cgpa`) VALUES
-(1, '311518104001', 'Aadithya', 50, 'infosys', 'software developer', 7, '10-11-2019', '17-11-2019', 'Image processing in Agriculture', 'Zoho Corporation ltd', '10-10-2019', 'The industrial visit was based on the work life of the employees in the office and the upcoming products which are available in zoho', 'O', 'U', 'A+', 'O', 'A', 'A+', 'O', 'O', '9.16', '9.16'),
-(2, '311518104002', 'Abijith', 50, 'infosys', 'software developer', 7, '10-11-2019', '17-11-2019', 'Bit coin', 'Zoho Corporation ltd', '10-10-2019', 'The industrial visit was based on the work life of the employees in the office and the upcoming products which are available in zoho', 'O', 'A+', 'A+', 'A', 'O', 'A', 'O', 'O', '9.16', '9.16');
+(1, '311518104001', 'Aadithya', 50, 'infosys', 'software developer', 7, '10-11-2019', '17-11-2019', 'Image processing in Agriculture', 'Zoho Corporation ltd', '10-10-2019', 'The industrial visit was based on the work life of the employees in the office and the upcoming products which are available in zoho', 'O', 'U', 'A+', 'O', 'A', 'A+', 'O', 'O', 9.16, 9.16),
+(2, '311518104002', 'Abijith', 50, 'infosys', 'software developer', 7, '10-11-2019', '17-11-2019', 'Bit coin', 'Zoho Corporation ltd', '10-10-2019', 'The industrial visit was based on the work life of the employees in the office and the upcoming products which are available in zoho', 'O', 'A+', 'A+', 'A', 'O', 'A', 'O', 'O', 9.16, 9.16);
 
 -- --------------------------------------------------------
 
@@ -117,8 +117,8 @@ CREATE TABLE `batch1sem2` (
   `p_in_c` varchar(5) NOT NULL,
   `eplab` varchar(5) NOT NULL,
   `clab` varchar(5) NOT NULL,
-  `gpa` varchar(5) NOT NULL,
-  `cgpa` varchar(5) NOT NULL
+  `gpa` float NOT NULL,
+  `cgpa` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -126,8 +126,8 @@ CREATE TABLE `batch1sem2` (
 --
 
 INSERT INTO `batch1sem2` (`id`, `rollno`, `name`, `attendance`, `office_name`, `domain`, `duration_intern`, `start_intern`, `end_intern`, `ecube_topic`, `company_name`, `visit_date`, `summary_iv`, `tech_eng`, `math`, `phy_is`, `beeme`, `evs`, `p_in_c`, `eplab`, `clab`, `gpa`, `cgpa`) VALUES
-(1, '311518104001', 'Aadithya', 50, 'tcs', 'software developer', 7, '10-02-2020', '17-02-2020', 'Big Data using ml', 'Cognizant', '10-01-2020', 'We leanred about the company and the atmosphere and working style', 'A', 'B+', 'A+', 'A', 'A+', 'O', 'O', 'O', '8.67', '8.91'),
-(2, '311518104002', 'Abijith', 50, 'tcs', 'software developer', 7, '10-02-2020', '17-02-2020', 'Steganography', 'cognizant', '10-01-2020', 'We leanred about the company and the atmosphere and working style', 'O', 'A+', 'A', 'A', 'O', 'O', 'O', 'O', '9.34', '9.26');
+(1, '311518104001', 'Aadithya', 50, 'tcs', 'software developer', 7, '10-02-2020', '17-02-2020', 'Big Data using ml', 'Cognizant', '10-01-2020', 'We leanred about the company and the atmosphere and working style', 'A', 'B+', 'A+', 'A', 'A+', 'O', 'O', 'O', 8.67, 8.91),
+(2, '311518104002', 'Abijith', 50, 'tcs', 'software developer', 7, '10-02-2020', '17-02-2020', 'Steganography', 'cognizant', '10-01-2020', 'We leanred about the company and the atmosphere and working style', 'O', 'A+', 'A', 'A', 'O', 'O', 'O', 'O', 9.34, 9.26);
 
 -- --------------------------------------------------------
 
@@ -181,7 +181,18 @@ INSERT INTO `session` (`id`, `user_name`, `token`, `expiry`, `active`) VALUES
 (22, 'mainuser', 'a6742d818be6838039186567656017b0', '2021-07-18 21:34:48', 1),
 (23, 'mainuser', '9e3fb463c53e10b5245a426a9d594221', '2021-07-21 17:50:58', 1),
 (24, 'mainuser', 'dce1f946c0419347c82872f83742bdbc', '2021-07-22 19:02:44', 1),
-(25, 'mainuser', '865fbf9fd679e526da65ef4577e2a381', '2021-07-25 10:13:15', 1);
+(25, 'mainuser', '865fbf9fd679e526da65ef4577e2a381', '2021-07-25 10:13:15', 1),
+(26, 'mainuser', '47bd2ebaaf34cc57724e0f3b48fcfd5f', '2021-07-25 12:15:46', 1),
+(27, 'mainuser', 'd9ac4ae4e7e3c5512cc4f78ed065c867', '2021-07-25 15:44:51', 1),
+(28, 'mainuser', '8a215bd8c01a312b061cb455ec591bb7', '2021-07-25 19:54:05', 1),
+(29, 'mainuser', '8578fa6ea77b9b2e3f30be5be35d34e2', '2021-07-28 09:44:03', 1),
+(30, 'mainuser', '2d4a7ecac58fab4c505a4cfa0e742191', '2021-07-28 11:47:31', 1),
+(31, 'mainuser', '82408ae095e25781f86960b2452c9baa', '2021-08-03 07:25:51', 1),
+(32, 'mainuser', 'f862c0190a2771e597db58d5319e5592', '2021-08-03 19:52:46', 1),
+(33, 'mainuser', '5c8470e455ba39f610b0a1193310122a', '2021-08-04 06:41:09', 1),
+(34, 'mainuser', 'fe8b52af34ebe52186039edfb552a4c3', '2021-08-07 16:04:41', 1),
+(35, 'mainuser', '42326d1b521c8da5eea93aeee04da408', '2021-08-07 18:25:35', 1),
+(36, 'mainuser', '9df4866515a2ec5d5b0992710f7d614c', '2021-08-10 13:42:08', 1);
 
 --
 -- Indexes for dumped tables
@@ -252,7 +263,7 @@ ALTER TABLE `main`
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

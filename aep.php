@@ -1,5 +1,11 @@
 <?php 
 
+//To find the semester detail
+$sem=preg_split("/[\d]/", $_GET['name'], 2);
+
+//Total subjects in the whole year,semester wise
+$subjects=array(array("Communicative English","Engineering Mathematics-I","Engineering Physics","Engineering Chemistry","Problem Solving and Python Programming","Engineering Graphics","PSPP Lab","P&C Lab"),array("Technical English","Engineering Mathematics-II","Physics for Information Science","Basic Electrical,Electronics and Measurement Engineering","Environmental Science and Engineering","Programming in C","EPs Lab","CP Lab"),array("Discrete Mathematics","Digital Principles and Design","Data Structures","Object Oriented Programming","Communication Engineering","DS Lab","OOP Lab","DS Lab","Interpersonal Skills/Listening & Speaking"),array("Probability and Queuing Theory","Computer Architecture","Database Management Systems","Design and Analysis of Algorithms","Operating Systems","Software Engineering","DBMS Lab","OS Lab","Advance Reading and Writing"),array("Algebra and Number Theory","Computer Networks","Microprocessors and Microcontrollers","Theory of Computation","Object Oriented Analysis and Design","Open Elective I","MPMC Lab","OOAD Lab","CN Lab"),array("Internet Programming","Artificial Intelligence","Mobile Computing","Complier Design","Distributed Systems","Professional Elective I","IP lab","MAD Lab","Mini Project"),array("Principles of Management","Cryptography and Network Security","Cloud Computing","Open Elective II","Professional Elective II","Professional Elective III","CC Lab","Security Lab"),array("Professional Elective IV","Professional Elective V","Project Work"));
+
 require_once "library/auth.php";
 
 if(isset($_COOKIE['username']) and isset($_COOKIE['token'])) 
@@ -15,12 +21,8 @@ else {
   header("Location: index.php");
 }
 
-$subjects=array(array("Communicative English","Engineering Mathematics-I","Engineering Physics","Engineering Chemistry","Problem Solving and Python Programming","Engineering Graphics","PSPP Lab","P&C Lab"),array("Technical English","Engineering Mathematics-II","Physics for Information Science","Basic Electrical,Electronics and Measurement Engineering","Environmental Science and Engineering","Programming in C","EPs Lab","CP Lab"),array("Discrete Mathematics","Digital Principles and Design","Data Structures","Object Oriented Programming","Communication Engineering","DS Lab","OOP Lab","DS Lab","Interpersonal Skills/Listening & Speaking"),array("Probability and Queuing Theory","Computer Architecture","Database Management Systems","Design and Analysis of Algorithms","Operating Systems","Software Engineering","DBMS Lab","OS Lab","Advance Reading and Writing"),array("Algebra and Number Theory","Computer Networks","Microprocessors and Microcontrollers","Theory of Computation","Object Oriented Analysis and Design","Open Elective I","MPMC Lab","OOAD Lab","CN Lab"),array("Internet Programming","Artificial Intelligence","Mobile Computing","Complier Design","Distributed Systems","Professional Elective I","IP lab","MAD Lab","Mini Project"),array("Principles of Management","Cryptography and Network Security","Cloud Computing","Open Elective II","Professional Elective II","Professional Elective III","CC Lab","Security Lab"),array("Professional Elective IV","Professional Elective V","Project Work"));
-
-$sem=preg_split("/[\d]/", $_GET['name'], 2);
-
-
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,6 +39,7 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
     <style>
     body {font-family: sans-serif}
     .w3-bar-block .w3-bar-item {
@@ -119,7 +122,7 @@ td {overflow:hidden; white-space:nowrap}
         <a class="w3-bar-item w3-button" href="personaldetails.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch'] ;?>"><i class='far fa-folder-open' ></i> Personal Details</a>
         <a class="w3-bar-item w3-button " href="#"><i class='far fa-edit'></i> Marks</a>
         <a class="w3-bar-item w3-button active" href="aep.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-book-reader'></i> AEP</a>
-        <a class="w3-bar-item w3-button" href="weak.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-chalkboard-teacher'></i> Weak</a>
+        <a class="w3-bar-item w3-button" href="weak.php?name=<?php echo$_GET['name'];?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-chalkboard-teacher'></i> Weak</a>
         <a class="w3-bar-item w3-button" href="attendance.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='far fa-calendar-check'></i> Attendance</a>
         <a class="w3-bar-item w3-button" href="ecube.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-users'></i> E-Cube</a>
         <a class="w3-bar-item w3-button" href="intern.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class="fa fa-laptop" aria-hidden="true"></i> Intern</a>
@@ -171,9 +174,9 @@ td {overflow:hidden; white-space:nowrap}
         </div>
 
         <header class="w3-container w3-theme bluecolor" style="padding:64px 32px; text-align:center;">
-         <?php 
-         if($_GET['batch']=='batch1')
-         {
+           <?php 
+           if($_GET['batch']=='batch1')
+           {
             echo' <h1 class="w3-xxxlarge" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">BATCH 1</h1>';
         }
         else if($_GET['batch']=='batch2')
@@ -226,193 +229,193 @@ td {overflow:hidden; white-space:nowrap}
     </header>
 
     <div class="w3-container" style="padding:32px">
-    <H3 class="w3-xxxlarge" style="font-size: 40px!important;font-weight: bold;">Achieve Excellence Program:</H3>
-       <a href="" class="btn btn-success pull-left" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-plus"></i><b>  ADD</b></a> &nbsp; &nbsp;
+        <H3 class="w3-xxxlarge" style="font-size: 40px!important;font-weight: bold;">Achieve Excellence Program:</H3>
+        <a href="" class="btn btn-success pull-left" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-plus"></i><b>  ADD</b></a> &nbsp; &nbsp;
 
-       <a href="" class="btn btn-success pull-right" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-download" aria-hidden="true"></i><b>  EXPORT</b></a>
-       <br><br><br>
+        <button onclick="ExportToExcel('xlsx')" class="btn btn-success pull-right"  style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-download" aria-hidden="true"></i><b>  EXPORT</b></button>
+        <br><br><br>
 
-       <?php
+        <?php
 
-       $db_conn=get_db_connection();
-       $count=1;
+        $db_conn=get_db_connection();
+        $count=1;
         // Attempt select query execution
-       if($sem[1]=='sem1')
-       {
-        if($_GET['batch']=='batch1')
-            $sql = "SELECT `id`, `rollno`, `name`, `comm_eng`, `math`, `eng_phy`, `eng_che`, `pspp`, `eng_gra`, `pspplab`, `pclab`, `gpa`, `cgpa` FROM msec.batch1sem1 ORDER BY gpa DESC" ;
-        if($_GET['batch']=='batch2')
-            $sql = "SELECT `id`, `rollno`, `name`, `comm_eng`, `math`, `eng_phy`, `eng_che`, `pspp`, `eng_gra`, `pspplab`, `pclab`, `gpa`, `cgpa` FROM msec.batch2sem1 ORDER BY gpa DESC" ;
-        if($_GET['batch']=='batch3')
-            $sql = "SELECT `id`, `rollno`, `name`, `comm_eng`, `math`, `eng_phy`, `eng_che`, `pspp`, `eng_gra`, `pspplab`, `pclab`, `gpa`, `cgpa` FROM msec.batch3sem1 ORDER BY gpa DESC" ;
-        if($_GET['batch']=='batch4')
-            $sql = "SELECT `id`, `rollno`, `name`, `comm_eng`, `math`, `eng_phy`, `eng_che`, `pspp`, `eng_gra`, `pspplab`, `pclab`, `gpa`, `cgpa` FROM msec.batch4sem1 ORDER BY gpa DESC" ;
-        if($result = mysqli_query($db_conn, $sql)){
-            if(mysqli_num_rows($result) > 0){
-                echo '<div style="overflow-x:auto;">';
-                echo '<table  class="table table-bordered table-striped" id="customers">';
-                echo "<thead>";
-                echo "<tr>";
-                echo "<th>S.NO.</th>";
-                echo "<th>NAME</th>";
-                echo "<th>REGISTER NUMBER</th>";
-                echo "<th>".$subjects[0][0]."</th>";
-                echo "<th>".$subjects[0][1]."</th>";
-                echo "<th>".$subjects[0][2]."</th>";
-                echo "<th>".$subjects[0][3]."</th>";
-                echo "<th>".$subjects[0][4]."</th>";
-                echo "<th>".$subjects[0][5]."</th>";
-                echo "<th>".$subjects[0][6]."</th>";
-                echo "<th>".$subjects[0][7]."</th>";
-                echo "<th>GPA</th>";
-                echo "<th>CGPA</th>";
-                echo "<th style=\"text-align:center\">ACTION</th>";
-                echo "</tr>";
-                echo "</thead>";
-                echo "<tbody>";
-                while($row = mysqli_fetch_array($result) ){
+        if($sem[1]=='sem1')
+        {
+            if($_GET['batch']=='batch1')
+                $sql = "SELECT `id`, `rollno`, `name`, `comm_eng`, `math`, `eng_phy`, `eng_che`, `pspp`, `eng_gra`, `pspplab`, `pclab`, `gpa`, `cgpa` FROM msec.batch1sem1 ORDER BY gpa DESC" ;
+            if($_GET['batch']=='batch2')
+                $sql = "SELECT `id`, `rollno`, `name`, `comm_eng`, `math`, `eng_phy`, `eng_che`, `pspp`, `eng_gra`, `pspplab`, `pclab`, `gpa`, `cgpa` FROM msec.batch2sem1 ORDER BY gpa DESC" ;
+            if($_GET['batch']=='batch3')
+                $sql = "SELECT `id`, `rollno`, `name`, `comm_eng`, `math`, `eng_phy`, `eng_che`, `pspp`, `eng_gra`, `pspplab`, `pclab`, `gpa`, `cgpa` FROM msec.batch3sem1 ORDER BY gpa DESC" ;
+            if($_GET['batch']=='batch4')
+                $sql = "SELECT `id`, `rollno`, `name`, `comm_eng`, `math`, `eng_phy`, `eng_che`, `pspp`, `eng_gra`, `pspplab`, `pclab`, `gpa`, `cgpa` FROM msec.batch4sem1 ORDER BY gpa DESC" ;
+            if($result = mysqli_query($db_conn, $sql)){
+                if(mysqli_num_rows($result) > 0){
+                    echo '<div style="overflow-x:auto;">';
+                    echo '<table  class="table table-bordered table-striped" id="customers" >';
+                    echo "<thead>";
                     echo "<tr>";
-                    echo "<td>" . $count. "</td>";
-                    echo "<td>" . $row['name'] . "</td>";
-                    echo "<td>" . $row['rollno'] . "</td>";
-                    echo "<td>" . $row['comm_eng'] . "</td>";
-                    echo "<td>" . $row['math'] . "</td>";
-                    echo "<td>" . $row['eng_phy'] . "</td>";
-                    echo "<td>" . $row['eng_che'] . "</td>";
-                    echo "<td>" . $row['pspp'] . "</td>";
-                    echo "<td>" . $row['eng_gra'] . "</td>";
-                    echo "<td>" . $row['pspplab'] . "</td>";
-                    echo "<td>" . $row['pclab'] . "</td>";
-                    echo "<td>" . $row['gpa'] . "</td>";
-                    echo "<td>" . $row['cgpa'] . "</td>";
-                    echo "<td>";
-
-                    echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['id'] .'&batch'.$_GET['batch'].'&name='.$_GET['name'].'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
-                    echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'&batch'.$_GET['batch'].'&name='.$_GET['name'].'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
-                    echo "</td>";
+                    echo "<th>S.NO.</th>";
+                    echo "<th>NAME</th>";
+                    echo "<th>REGISTER NUMBER</th>";
+                    echo "<th>".$subjects[0][0]."</th>";
+                    echo "<th>".$subjects[0][1]."</th>";
+                    echo "<th>".$subjects[0][2]."</th>";
+                    echo "<th>".$subjects[0][3]."</th>";
+                    echo "<th>".$subjects[0][4]."</th>";
+                    echo "<th>".$subjects[0][5]."</th>";
+                    echo "<th>".$subjects[0][6]."</th>";
+                    echo "<th>".$subjects[0][7]."</th>";
+                    echo "<th>GPA</th>";
+                    echo "<th>CGPA</th>";
+                    echo "<th style=\"text-align:center\">ACTION</th>";
                     echo "</tr>";
+                    echo "</thead>";
+                    echo "<tbody>";
+                    while($row = mysqli_fetch_array($result) ){
+                        echo "<tr>";
+                        echo "<td>" . $count. "</td>";
+                        echo "<td><a href=\"summary.php?name=".$_GET['name']."&batch=".$_GET['batch']."&id=".$row['rollno']."\" >" .$row['name']. "</a></td>";
+                        echo "<td>" . $row['rollno'] . "</td>";
+                        echo "<td>" . $row['comm_eng'] . "</td>";
+                        echo "<td>" . $row['math'] . "</td>";
+                        echo "<td>" . $row['eng_phy'] . "</td>";
+                        echo "<td>" . $row['eng_che'] . "</td>";
+                        echo "<td>" . $row['pspp'] . "</td>";
+                        echo "<td>" . $row['eng_gra'] . "</td>";
+                        echo "<td>" . $row['pspplab'] . "</td>";
+                        echo "<td>" . $row['pclab'] . "</td>";
+                        echo "<td>" . $row['gpa'] . "</td>";
+                        echo "<td>" . $row['cgpa'] . "</td>";
+                        echo "<td>";
 
-                    $count=$count+1;
-                }
-                echo "</tbody>";                            
-                echo "</table>";
-                echo "</div>";
+                        echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='.$row['id'].'&batch'.$_GET['batch'].'&name='.$_GET['name'].'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
+                        echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'&batch'.$_GET['batch'].'&name='.$_GET['name'].'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
+                        echo "</td>";
+                        echo "</tr>";
+
+                        $count=$count+1;
+                    }
+                    echo "</tbody>";                            
+                    echo "</table>";
+                    echo "</div>";
                 // Free result set
-                mysqli_free_result($result);
+                    mysqli_free_result($result);
+                } else{
+                    echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+                }
             } else{
-                echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+                echo "Oops! Something went wrong. Please try again later.";
             }
-        } else{
-            echo "Oops! Something went wrong. Please try again later.";
         }
-    }
-    else if($sem[1]=='sem2')
-    {
-        if($_GET['batch']=="batch1")
-            $sql = "SELECT `id` , `rollno`, `name`, `tech_eng`, `math`, `phy_is`, `beeme`, `evs`, `p_in_c`, `eplab`, `clab`, `gpa`, `cgpa` FROM msec.batch1sem2 ORDER BY gpa DESC";
-        if($_GET['batch']=="batch2")
-            $sql = "SELECT `id` , `rollno`, `name`, `tech_eng`, `math`, `phy_is`, `beeme`, `evs`, `p_in_c`, `eplab`, `clab`, `gpa`, `cgpa` FROM msec.batch2sem2 ORDER BY gpa DESC";
-        if($_GET['batch']=="batch3")
-            $sql = "SELECT `id` , `rollno`, `name`, `tech_eng`, `math`, `phy_is`, `beeme`, `evs`, `p_in_c`, `eplab`, `clab`, `gpa`, `cgpa` FROM msec.batch3sem2 ORDER BY gpa DESC";
-        if($_GET['batch']=="batch4")
-            $sql = "SELECT `id` , `rollno`, `name`, `tech_eng`, `math`, `phy_is`, `beeme`, `evs`, `p_in_c`, `eplab`, `clab`, `gpa`, `cgpa` FROM msec.batch4sem2 ORDER BY gpa DESC";
-        if($result = mysqli_query($db_conn, $sql)){
-            if(mysqli_num_rows($result) > 0 ){
-                echo '<div style="overflow-x:auto;">';
-                echo '<table  class="table table-bordered table-striped" id="customers">';
-                echo "<thead>";
-                echo "<tr>";
-                echo "<th>S.NO.</th>";
-                echo "<th>NAME</th>";
-                echo "<th>REGISTER NUMBER</th>";
-                echo "<th>".$subjects[1][0]."</th>";
-                echo "<th>".$subjects[1][1]."</th>";
-                echo "<th>".$subjects[1][2]."</th>";
-                echo "<th>".$subjects[1][3]."</th>";
-                echo "<th>".$subjects[1][4]."</th>";
-                echo "<th>".$subjects[1][5]."</th>";
-                echo "<th>".$subjects[1][6]."</th>";
-                echo "<th>".$subjects[1][7]."</th>";
-                echo "<th>GPA</th>";
-                echo "<th>CGPA</th>";
-                echo "<th style=\"text-align:center\">ACTION</th>";
-                echo "</tr>";
-                echo "</thead>";
-                echo "<tbody>";
-                while(($row = mysqli_fetch_array($result)) && ($count<11)){
+        else if($sem[1]=='sem2')
+        {
+            if($_GET['batch']=="batch1")
+                $sql = "SELECT `id` , `rollno`, `name`, `tech_eng`, `math`, `phy_is`, `beeme`, `evs`, `p_in_c`, `eplab`, `clab`, `gpa`, `cgpa` FROM msec.batch1sem2 ORDER BY gpa DESC";
+            if($_GET['batch']=="batch2")
+                $sql = "SELECT `id` , `rollno`, `name`, `tech_eng`, `math`, `phy_is`, `beeme`, `evs`, `p_in_c`, `eplab`, `clab`, `gpa`, `cgpa` FROM msec.batch2sem2 ORDER BY gpa DESC";
+            if($_GET['batch']=="batch3")
+                $sql = "SELECT `id` , `rollno`, `name`, `tech_eng`, `math`, `phy_is`, `beeme`, `evs`, `p_in_c`, `eplab`, `clab`, `gpa`, `cgpa` FROM msec.batch3sem2 ORDER BY gpa DESC";
+            if($_GET['batch']=="batch4")
+                $sql = "SELECT `id` , `rollno`, `name`, `tech_eng`, `math`, `phy_is`, `beeme`, `evs`, `p_in_c`, `eplab`, `clab`, `gpa`, `cgpa` FROM msec.batch4sem2 ORDER BY gpa DESC";
+            if($result = mysqli_query($db_conn, $sql)){
+                if(mysqli_num_rows($result) > 0 ){
+                    echo '<div style="overflow-x:auto;">';
+                    echo '<table  class="table table-bordered table-striped" id="customers">';
+                    echo "<thead>";
                     echo "<tr>";
-                    echo "<td>" . $count . "</td>";
-                    echo "<td>" . $row['name'] . "</td>";
-                    echo "<td>" . $row['rollno'] . "</td>";
-                    echo "<td>" . $row['tech_eng'] . "</td>";
-                    echo "<td>" . $row['math'] . "</td>";
-                    echo "<td>" . $row['phy_is'] . "</td>";
-                    echo "<td>" . $row['beeme'] . "</td>";
-                    echo "<td>" . $row['evs'] . "</td>";
-                    echo "<td>" . $row['p_in_c'] . "</td>";
-                    echo "<td>" . $row['eplab'] . "</td>";
-                    echo "<td>" . $row['clab'] . "</td>";
-                    echo "<td>" . $row['gpa'] . "</td>";
-                    echo "<td>" . $row['cgpa'] . "</td>";
-                    echo "<td>";
-
-                    echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['id'] .'&batch'.$_GET['batch'].'&name='.$_GET['name'].'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
-                    echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'&batch'.$_GET['batch'].'&name='.$_GET['name'].'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
-                    echo "</td>";
+                    echo "<th>S.NO.</th>";
+                    echo "<th>NAME</th>";
+                    echo "<th>REGISTER NUMBER</th>";
+                    echo "<th>".$subjects[1][0]."</th>";
+                    echo "<th>".$subjects[1][1]."</th>";
+                    echo "<th>".$subjects[1][2]."</th>";
+                    echo "<th>".$subjects[1][3]."</th>";
+                    echo "<th>".$subjects[1][4]."</th>";
+                    echo "<th>".$subjects[1][5]."</th>";
+                    echo "<th>".$subjects[1][6]."</th>";
+                    echo "<th>".$subjects[1][7]."</th>";
+                    echo "<th>GPA</th>";
+                    echo "<th>CGPA</th>";
+                    echo "<th style=\"text-align:center\">ACTION</th>";
                     echo "</tr>";
+                    echo "</thead>";
+                    echo "<tbody>";
+                    while(($row = mysqli_fetch_array($result)) && ($count<11)){
+                        echo "<tr>";
+                        echo "<td>" . $count . "</td>";
+                        echo "<td>" . $row['name'] . "</td>";
+                        echo "<td>" . $row['rollno'] . "</td>";
+                        echo "<td>" . $row['tech_eng'] . "</td>";
+                        echo "<td>" . $row['math'] . "</td>";
+                        echo "<td>" . $row['phy_is'] . "</td>";
+                        echo "<td>" . $row['beeme'] . "</td>";
+                        echo "<td>" . $row['evs'] . "</td>";
+                        echo "<td>" . $row['p_in_c'] . "</td>";
+                        echo "<td>" . $row['eplab'] . "</td>";
+                        echo "<td>" . $row['clab'] . "</td>";
+                        echo "<td>" . $row['gpa'] . "</td>";
+                        echo "<td>" . $row['cgpa'] . "</td>";
+                        echo "<td>";
 
-                    $count=$count+1;
-                }
-                echo "</tbody>";                            
-                echo "</table>";
-                echo "</div>";
+                        echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['id'] .'&batch'.$_GET['batch'].'&name='.$_GET['name'].'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
+                        echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'&batch'.$_GET['batch'].'&name='.$_GET['name'].'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
+                        echo "</td>";
+                        echo "</tr>";
+
+                        $count=$count+1;
+                    }
+                    echo "</tbody>";                            
+                    echo "</table>";
+                    echo "</div>";
                 // Free result set
-                mysqli_free_result($result);
+                    mysqli_free_result($result);
+                } else{
+                    echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+                }
             } else{
-                echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+                echo "Oops! Something went wrong. Please try again later.";
             }
-        } else{
-            echo "Oops! Something went wrong. Please try again later.";
         }
-    }
-    else if($sem[1]=='sem3')
-    {
+        else if($sem[1]=='sem3')
+        {
 
-    }
-    else if($sem[1]=='sem4')
-    {
+        }
+        else if($sem[1]=='sem4')
+        {
 
-    }
-    else if($sem[1]=='sem5')
-    {
+        }
+        else if($sem[1]=='sem5')
+        {
 
-    }
-    else if($sem[1]=='sem6')
-    {
+        }
+        else if($sem[1]=='sem6')
+        {
 
-    }
-    else if($sem[1]=='sem7')
-    {
+        }
+        else if($sem[1]=='sem7')
+        {
 
-    }
-    else if($sem[1]=='sem8')
-    {
+        }
+        else if($sem[1]=='sem8')
+        {
 
-    }
-    else
-    {
-        echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
-    }
+        }
+        else
+        {
+            echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+        }
 
         // Close connection
-    mysqli_close($db_conn);
-    ?>
+        mysqli_close($db_conn);
+        ?>
 
 
-</div>
-<footer class="w3-container w3-theme bluecolor" style="padding:32px; text-align: center; color:white; text-decoration: none;font-size:180%;">
-    <p>&copy; <a href="http://www.msec.edu.in/" title="W3.CSS" target="_blank" class="w3-hover-text-green" style="color:white; ">MSEC</a></p>
-</footer>
+    </div>
+    <footer class="w3-container w3-theme bluecolor" style="padding:32px; text-align: center; color:white; text-decoration: none;font-size:180%;">
+        <p>&copy; <a href="http://www.msec.edu.in/" title="W3.CSS" target="_blank" class="w3-hover-text-green" style="color:white; ">MSEC</a></p>
+    </footer>
 
 </div>
 
@@ -451,6 +454,11 @@ td {overflow:hidden; white-space:nowrap}
             x.previousElementSibling.className = 
             x.previousElementSibling.className.replace(" w3-theme", "");
         }
+    }
+    function ExportToExcel(type, fn, dl) {
+       var elt = document.getElementById('customers');
+       var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+       return dl ? XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }): XLSX.writeFile(wb, fn || ('AEP.' + (type || 'xlsx')));
     }
 </script>
 

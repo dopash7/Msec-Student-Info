@@ -151,6 +151,7 @@ $db_conn=get_db_connection();
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
     <style>
         body {font-family: sans-serif}
         .w3-bar-block .w3-bar-item {
@@ -456,7 +457,7 @@ $db_conn=get_db_connection();
       <H3 class="w3-xxxlarge" style="font-size: 40px!important;font-weight: bold;">LIST OF STUDENTS:</H3>
      <a href="" class="btn btn-success pull-left" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-plus"></i><b>  ADD</b></a> &nbsp; &nbsp;
     
-      <a href="" class="btn btn-success pull-right" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-download" aria-hidden="true"></i><b>  EXPORT</b></a>
+      <button onclick="ExportToExcel('xlsx')" class="btn btn-success pull-right" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-download" aria-hidden="true"></i><b>  EXPORT</b></button>
      <br><br><br>
 
      <?php
@@ -493,7 +494,7 @@ $db_conn=get_db_connection();
                     while($row = mysqli_fetch_array($result)){
                         echo "<tr>";
                             echo "<td>" . $row['id'] . "</td>";
-                            echo "<td>" . $row['name'] . "</td>";
+                            echo "<td><a href=\"summary.php?name=".$_GET['name']."&batch=".$_GET['batch']."&id=".$row['rollno']." \">" . $row['name'] . "</a></td>";
                             echo "<td>" . $row['rollno'] . "</td>";
                             echo "<td>" . $row['comm_eng'] . "</td>";
                             echo "<td>" . $row['math'] . "</td>";
@@ -555,7 +556,7 @@ $db_conn=get_db_connection();
                     while($row = mysqli_fetch_array($result)){
                         echo "<tr>";
                             echo "<td>" . $row['id'] . "</td>";
-                            echo "<td>" . $row['name'] . "</td>";
+                            echo "<td><a href=\"summary.php?name=".$_GET['name']." &batch=".$_GET['batch']."&id=".$row['rollno']." \">" . $row['name'] . "</a></td>";
                             echo "<td>" . $row['rollno'] . "</td>";
                             echo "<td>" . $row['tech_eng'] . "</td>";
                             echo "<td>" . $row['math'] . "</td>";
@@ -665,6 +666,11 @@ $db_conn=get_db_connection();
             x.previousElementSibling.className.replace(" w3-theme", "");
           }
         }
+         function ExportToExcel(type, fn, dl) {
+       var elt = document.getElementById('customers');
+       var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+       return dl ? XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }): XLSX.writeFile(wb, fn || ('MARK.' + (type || 'xlsx')));
+    }
     </script>
          
 </body>
