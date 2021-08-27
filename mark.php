@@ -142,7 +142,6 @@ $db_conn=get_db_connection();
     <link rel="icon" href="logo.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
@@ -152,28 +151,32 @@ $db_conn=get_db_connection();
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
-    <style>
+    <style type="text/css">
         body {font-family: sans-serif}
+.w3-theme{
+    color: #fff!important;
+}
         .w3-bar-block .w3-bar-item {
-          padding: 16px;
+          padding: 16px!important;
           font-weight: bold;
         }
         .w3-bar-item{
             padding: 16px;
             letter-spacing: 1px;
             font-weight: bold;
-            background-color:#1E6091;
-            color:#D9ED92;
+            background-color:#25274d;
+            color: #aaabb8;
                 }
         .w3-bar-item:hover {
             padding: 16px;
             letter-spacing: 1px;
             font-weight: bold;
-            color:#1E6091!important;
-            background-color:#D9ED92!important;
+            color:  #aaabb8!important;
+            background-color:#29648a!important;
+
                 }
         .bluecolor {
-            background-color:#1E6091!important;
+            background-color:#25274d!important;
                 }
         .w3-leftbar{
             border-left:#1E6091!important;
@@ -193,14 +196,14 @@ $db_conn=get_db_connection();
           padding-top: 12px;
           padding-bottom: 12px;
           text-align: left;
-          background-color: rgba(52, 160, 164, 0.4);
-          color: #184E77;
+          background-color: #25274d;
+          color: #aaabb8;
         }
       
         .topnav a {
           float: left;
           display: block;
-          color: #D9ED92;
+          color: #aaabb8;
           text-align: center;
           padding: 14px 16px;
           text-decoration: none;
@@ -208,8 +211,8 @@ $db_conn=get_db_connection();
           border-left: 7px solid transparent;
         }
         .topnav a.active {
-          border-left: 7px solid #76C893;
-          color: #76C893;
+          border-left: 7px solid #2e9cca;
+          color: #2e9cca;
           background-color: rgba(0, 0, 0, 0.3);
         }
         td {overflow:hidden; white-space:nowrap}
@@ -220,8 +223,12 @@ $db_conn=get_db_connection();
           padding: 10px;
         }
 
-        
-</style>
+        .headd{
+            color: #aaabb8;
+            text-shadow: 2px 2px 1px #000000!important;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -252,35 +259,35 @@ $db_conn=get_db_connection();
                         <?php
                 if($sem[1]=='sem1')
                     {
-                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 1</span>';
+                        echo'<span id="myIntro" class="w3-hide headd" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 1</span>';
                     }
                     else if($sem[1]=='sem2')
                     {
-                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;margin-top:20px;">Semester 2</span>';
+                        echo'<span id="myIntro" class="w3-hide headd" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;margin-top:20px;">Semester 2</span>';
                     }
                     else if($sem[1]=='sem3')
                     {
-                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 3</span>';
+                        echo'<span id="myIntro" class="w3-hide headd" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 3</span>';
                     }
                     else if($sem[1]=='sem4')
                     {
-                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 4</span>';
+                        echo'<span id="myIntro" class="w3-hide headd" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 4</span>';
                     }
                     else if($sem[1]=='sem5')
                     {
-                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 5</span>';
+                        echo'<span id="myIntro" class="w3-hide headd" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 5</span>';
                     }
                     else if($sem[1]=='sem6')
                     {
-                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 6</span>';
+                        echo'<span id="myIntro" class="w3-hide headd" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 6</span>';
                     }
                     else if($sem[1]=='sem7')
                     {
-                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 7</span>';
+                        echo'<span id="myIntro" class="w3-hide headd" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 7</span>';
                     }
                     else if($sem[1]=='sem8')
                     {
-                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 8</span>';
+                        echo'<span id="myIntro" class="w3-hide headd" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 8</span>';
                     }
                    ?></p>
                     </div>
@@ -289,15 +296,15 @@ $db_conn=get_db_connection();
                        <?php 
                        if($_GET['batch']=='batch1')
                        {
-                        echo' <h1 class="w3-xxxlarge" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">BATCH 1</h1>';
+                        echo' <h1 class="w3-xxxlarge headd" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">BATCH 1</h1>';
                       }
                       else if($_GET['batch']=='batch2')
                        {
-                        echo' <h1 class="w3-xxxlarge" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">BATCH 2</h1>';
+                        echo' <h1 class="w3-xxxlarge headd" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">BATCH 2</h1>';
                       }
                       else if($_GET['batch']=='batch3')
                        {
-                        echo' <h1 class="w3-xxxlarge" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">BATCH 3</h1>';
+                        echo' <h1 class="w3-xxxlarge headd" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">BATCH 3</h1>';
                       }
                       else if($_GET['batch']=='batch4')
                        {
@@ -306,35 +313,35 @@ $db_conn=get_db_connection();
 
                     if($sem[1]=="sem1")
                     {
-                    echo'<H2 class="w3-xxxlarge" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 1</H2>';
+                    echo'<H2 class="w3-xxxlarge headd" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 1</H2>';
                     }
                     else if($sem[1]=="sem2")
                     {
-                    echo'<H2 class="w3-xxxlarge" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 2</H2>';
+                    echo'<H2 class="w3-xxxlarge headd" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 2</H2>';
                     }
                      else if($sem[1]=="sem3")
                     {
-                    echo'<H2 class="w3-xxxlarge" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 3</H2>';
+                    echo'<H2 class="w3-xxxlarge headd" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 3</H2>';
                     }
                      else if($sem[1]=="sem4")
                     {
-                    echo'<H2 class="w3-xxxlarge" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 4</H2>';
+                    echo'<H2 class="w3-xxxlarge headd" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 4</H2>';
                     }
                      else if($sem[1]=="sem5")
                     {
-                    echo'<H2 class="w3-xxxlarge" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 5</H2>';
+                    echo'<H2 class="w3-xxxlarge headd" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 5</H2>';
                     }
                      else if($sem[1]=="sem6")
                     {
-                    echo'<H2 class="w3-xxxlarge" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 6</H2>';
+                    echo'<H2 class="w3-xxxlarge headd" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 6</H2>';
                     }
                      else if($sem[1]=="sem7")
                     {
-                    echo'<H2 class="w3-xxxlarge" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 7</H2>';
+                    echo'<H2 class="w3-xxxlarge headd" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 7</H2>';
                     }
                      else if($sem[1]=="sem8")
                     {
-                    echo'<H2 class="w3-xxxlarge" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 8</H2>';
+                    echo'<H2 class="w3-xxxlarge headd" style="font-size: 60px!important;font-weight: bold;text-shadow: 1px 1px 3px #000000;">SEMESTER 8</H2>';
                     }
                     ?>
 
@@ -342,7 +349,7 @@ $db_conn=get_db_connection();
 
     <div class="w3-container" style="padding:32px">
         
-        <H3 class="w3-xxxlarge" style="font-size: 40px!important;font-weight: bold;">PASS PERCENTAGE:</H3>
+        <H3 class="w3-xxxlarge" style="font-size: 40px!important;font-weight: bold;color: #464866!important;">PASS PERCENTAGE:</H3>
         <?php
         if($sem[1]=='sem1')
             {
@@ -350,37 +357,37 @@ $db_conn=get_db_connection();
                <div class=\"item1\">
                <p>".$subjects[0][0]."</p>
           <div class=\"w3-light-grey w3-round-xlarge w3-small\">
-            <div class=\"w3-container w3-center w3-round-xlarge w3-teal\" style=\"width:".((((int)$total-(int)$bar[0])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[0])/(int)$total)*100)."%</div>
+            <div class=\"w3-container w3-center w3-round-xlarge \" style=\"background-color:#2e9cca;width:".((((int)$total-(int)$bar[0])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[0])/(int)$total)*100)."%</div>
           </div><br>
           <p>".$subjects[0][1]."</p>
           <div class=\"w3-light-grey w3-round-xlarge w3-small\">
-            <div class=\"w3-container w3-center w3-round-xlarge w3-teal\" style=\"width:".((((int)$total-(int)$bar[1])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[1])/(int)$total)*100)."%</div>
+            <div class=\"w3-container w3-center w3-round-xlarge \" style=\"background-color:#2e9cca;width:".((((int)$total-(int)$bar[1])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[1])/(int)$total)*100)."%</div>
           </div><br>
           <p>".$subjects[0][2]."</p>
           <div class=\"w3-light-grey w3-round-xlarge w3-small\">
-            <div class=\"w3-container w3-center w3-round-xlarge w3-teal\" style=\"width:".((((int)$total-(int)$bar[2])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[2])/(int)$total)*100)."%</div>
+            <div class=\"w3-container w3-center w3-round-xlarge \" style=\"background-color:#2e9cca;width:".((((int)$total-(int)$bar[2])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[2])/(int)$total)*100)."%</div>
           </div><br>
           <p>".$subjects[0][3]."</p>
           <div class=\"w3-light-grey w3-round-xlarge w3-small\">
-            <div class=\"w3-container w3-center w3-round-xlarge w3-teal\" style=\"width:".((((int)$total-(int)$bar[3])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[3])/(int)$total)*100)."%</div>
+            <div class=\"w3-container w3-center w3-round-xlarge \" style=\"background-color:#2e9cca;width:".((((int)$total-(int)$bar[3])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[3])/(int)$total)*100)."%</div>
           </div>
           </div>
           <div class=\"item2\">
           <p>".$subjects[0][4]."</p>
           <div class=\"w3-light-grey w3-round-xlarge w3-small\">
-            <div class=\"w3-container w3-center w3-round-xlarge w3-teal\" style=\"width:".((((int)$total-(int)$bar[4])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[4])/(int)$total)*100)."%</div>
+            <div class=\"w3-container w3-center w3-round-xlarge \" style=\"background-color:#2e9cca;width:".((((int)$total-(int)$bar[4])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[4])/(int)$total)*100)."%</div>
           </div><br>
           <p>".$subjects[0][5]."</p>
           <div class=\"w3-light-grey w3-round-xlarge w3-small\">
-            <div class=\"w3-container w3-center w3-round-xlarge w3-teal\" style=\"width:".((((int)$total-(int)$bar[5])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[5])/(int)$total)*100)."%</div>
+            <div class=\"w3-container w3-center w3-round-xlarge \" style=\"background-color:#2e9cca;width:".((((int)$total-(int)$bar[5])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[5])/(int)$total)*100)."%</div>
           </div><br>
           <p>".$subjects[0][6]."</p>
           <div class=\"w3-light-grey w3-round-xlarge w3-small\">
-            <div class=\"w3-container w3-center w3-round-xlarge w3-teal\" style=\"width:".((((int)$total-(int)$bar[6])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[6])/(int)$total)*100)."%</div>
+            <div class=\"w3-container w3-center w3-round-xlarge \" style=\"background-color:#2e9cca;width:".((((int)$total-(int)$bar[6])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[6])/(int)$total)*100)."%</div>
           </div><br>
           <p>".$subjects[0][7]."</p>
           <div class=\"w3-light-grey w3-round-xlarge w3-small\">
-            <div class=\"w3-container w3-center w3-round-xlarge w3-teal\" style=\"width:".((((int)$total-(int)$bar[7])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[7])/(int)$total)*100)."%</div>
+            <div class=\"w3-container w3-center w3-round-xlarge \" style=\"background-color:#2e9cca;width:".((((int)$total-(int)$bar[7])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[7])/(int)$total)*100)."%</div>
           </div>
           </div>
           </div>";
@@ -391,37 +398,37 @@ $db_conn=get_db_connection();
                <div class=\"item1\">
                <p>".$subjects[1][0]."</p>
           <div class=\"w3-light-grey w3-round-xlarge w3-small\">
-            <div class=\"w3-container w3-center w3-round-xlarge w3-teal\" style=\"width:".((((int)$total-(int)$bar[0])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[0])/(int)$total)*100)."%</div>
+            <div class=\"w3-container w3-center w3-round-xlarge \" style=\"background-color:#2e9cca;width:".((((int)$total-(int)$bar[0])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[0])/(int)$total)*100)."%</div>
           </div><br>
           <p>".$subjects[1][1]."</p>
           <div class=\"w3-light-grey w3-round-xlarge w3-small\">
-            <div class=\"w3-container w3-center w3-round-xlarge w3-teal\" style=\"width:".((((int)$total-(int)$bar[1])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[1])/(int)$total)*100)."%</div>
+            <div class=\"w3-container w3-center w3-round-xlarge \" style=\"background-color:#2e9cca;width:".((((int)$total-(int)$bar[1])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[1])/(int)$total)*100)."%</div>
           </div><br>
           <p>".$subjects[1][2]."</p>
           <div class=\"w3-light-grey w3-round-xlarge w3-small\">
-            <div class=\"w3-container w3-center w3-round-xlarge w3-teal\" style=\"width:".((((int)$total-(int)$bar[2])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[2])/(int)$total)*100)."%</div>
+            <div class=\"w3-container w3-center w3-round-xlarge \" style=\"background-color:#2e9cca;width:".((((int)$total-(int)$bar[2])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[2])/(int)$total)*100)."%</div>
           </div><br>
           <p>".$subjects[1][3]."</p>
           <div class=\"w3-light-grey w3-round-xlarge w3-small\">
-            <div class=\"w3-container w3-center w3-round-xlarge w3-teal\" style=\"width:".((((int)$total-(int)$bar[3])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[3])/(int)$total)*100)."%</div>
+            <div class=\"w3-container w3-center w3-round-xlarge \" style=\"background-color:#2e9cca;width:".((((int)$total-(int)$bar[3])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[3])/(int)$total)*100)."%</div>
           </div>
           </div>
           <div class=\"item2\">
           <p>".$subjects[1][4]."</p>
           <div class=\"w3-light-grey w3-round-xlarge w3-small\">
-            <div class=\"w3-container w3-center w3-round-xlarge w3-teal\" style=\"width:".((((int)$total-(int)$bar[4])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[4])/(int)$total)*100)."%</div>
+            <div class=\"w3-container w3-center w3-round-xlarge \" style=\"background-color:#2e9cca;width:".((((int)$total-(int)$bar[4])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[4])/(int)$total)*100)."%</div>
           </div><br>
           <p>".$subjects[1][5]."</p>
           <div class=\"w3-light-grey w3-round-xlarge w3-small\">
-            <div class=\"w3-container w3-center w3-round-xlarge w3-teal\" style=\"width:".((((int)$total-(int)$bar[5])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[5])/(int)$total)*100)."%</div>
+            <div class=\"w3-container w3-center w3-round-xlarge \" style=\"background-color:#2e9cca;width:".((((int)$total-(int)$bar[5])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[5])/(int)$total)*100)."%</div>
           </div><br>
           <p>".$subjects[1][6]."</p>
           <div class=\"w3-light-grey w3-round-xlarge w3-small\">
-            <div class=\"w3-container w3-center w3-round-xlarge w3-teal\" style=\"width:".((((int)$total-(int)$bar[6])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[6])/(int)$total)*100)."%</div>
+            <div class=\"w3-container w3-center w3-round-xlarge \" style=\"background-color:#2e9cca;width:".((((int)$total-(int)$bar[6])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[6])/(int)$total)*100)."%</div>
           </div><br>
           <p>".$subjects[1][7]."</p>
           <div class=\"w3-light-grey w3-round-xlarge w3-small\">
-            <div class=\"w3-container w3-center w3-round-xlarge w3-teal\" style=\"width:".((((int)$total-(int)$bar[7])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[7])/(int)$total)*100)."%</div>
+            <div class=\"w3-container w3-center w3-round-xlarge \" style=\"background-color:#2e9cca;width:".((((int)$total-(int)$bar[7])/(int)$total)*100)."%\">".((((int)$total-(int)$bar[7])/(int)$total)*100)."%</div>
           </div>
           </div>
           </div>";
@@ -454,10 +461,10 @@ $db_conn=get_db_connection();
 
       ?>
 
-      <H3 class="w3-xxxlarge" style="font-size: 40px!important;font-weight: bold;">LIST OF STUDENTS:</H3>
-     <a href="" class="btn btn-success pull-left" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-plus"></i><b>  ADD</b></a> &nbsp; &nbsp;
+      <H3 class="w3-xxxlarge" style="font-size: 40px!important;font-weight: bold; color: #464866!important;">LIST OF STUDENTS:</H3>
+     <a href="" class="btn btn-success pull-left" style="background-color: #2e9cca; border-color: #76C893; color: black;"><i class="fa fa-plus"></i><b>  ADD</b></a> &nbsp; &nbsp;
     
-      <button onclick="ExportToExcel('xlsx')" class="btn btn-success pull-right" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-download" aria-hidden="true"></i><b>  EXPORT</b></button>
+      <button onclick="ExportToExcel('xlsx')" class="btn btn-success pull-right" style="background-color: #2e9cca; border-color: #76C893; color: black;"><i class="fa fa-download" aria-hidden="true"></i><b>  EXPORT</b></button>
      <br><br><br>
 
      <?php
@@ -508,8 +515,8 @@ $db_conn=get_db_connection();
                             echo "<td>" . $row['cgpa'] . "</td>";
                             echo "<td>";
                                 
-                                echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['id'] .'&batch'.$_GET['batch'].'&name='.$_GET['name'].'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
-                                echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'&batch'.$_GET['batch'].'&name='.$_GET['name'].'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
+                                echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['rollno'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
+                                echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
                             echo "</td>";
                         echo "</tr>";
                        

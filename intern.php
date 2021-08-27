@@ -25,9 +25,9 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
 <head>
     <title>INTERN | MSEC</title>
     <link rel="icon" href="logo.jpg">
+    <link rel="stylesheet" href="design1.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
@@ -37,28 +37,32 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
-    <style>
+    <style type="text/css">
         body {font-family: sans-serif}
+.w3-theme{
+    color: #fff!important;
+}
         .w3-bar-block .w3-bar-item {
-          padding: 16px;
+          padding: 16px!important;
           font-weight: bold;
         }
         .w3-bar-item{
             padding: 16px;
             letter-spacing: 1px;
             font-weight: bold;
-            background-color:#1E6091;
-            color:#D9ED92;
+            background-color:#25274d;
+            color: #aaabb8;
                 }
         .w3-bar-item:hover {
             padding: 16px;
             letter-spacing: 1px;
             font-weight: bold;
-            color:#1E6091!important;
-            background-color:#D9ED92!important;
+            color:  #aaabb8!important;
+            background-color:#29648a!important;
+
                 }
         .bluecolor {
-            background-color:#1E6091!important;
+            background-color:#25274d!important;
                 }
         .w3-leftbar{
             border-left:#1E6091!important;
@@ -78,14 +82,14 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
           padding-top: 12px;
           padding-bottom: 12px;
           text-align: left;
-          background-color: rgba(52, 160, 164, 0.4);
-          color: #184E77;
+          background-color: #25274d;
+          color: #aaabb8;
         }
-        
+      
         .topnav a {
           float: left;
           display: block;
-          color: #D9ED92;
+          color: #aaabb8;
           text-align: center;
           padding: 14px 16px;
           text-decoration: none;
@@ -93,8 +97,8 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
           border-left: 7px solid transparent;
         }
         .topnav a.active {
-          border-left: 7px solid #76C893;
-          color: #76C893;
+          border-left: 7px solid #2e9cca;
+          color: #2e9cca;
           background-color: rgba(0, 0, 0, 0.3);
         }
         td {overflow:hidden; white-space:nowrap}
@@ -105,8 +109,12 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
           padding: 10px;
         }
 
-        
-</style>
+        .headd{
+            color: #aaabb8;
+            text-shadow: 2px 2px 1px #000000!important;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -117,7 +125,7 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
      
             <a class="w3-bar-item w3-button " href="semester.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch'] ;?>"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Students</a>
             <a class="w3-bar-item w3-button" href="personaldetails.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch'] ;?>"><i class='far fa-folder-open' ></i> Personal Details</a>
-            <a class="w3-bar-item w3-button" href="#"><i class='far fa-edit'></i> Marks</a>
+           <a class="w3-bar-item w3-button" href="mark.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='far fa-edit'></i> Marks</a>
             <a class="w3-bar-item w3-button" href="aep.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-book-reader'></i> AEP</a>
             <a class="w3-bar-item w3-button" href="weak.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-chalkboard-teacher'></i> Weak</a>
              <a class="w3-bar-item w3-button " href="attendance.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='far fa-calendar-check'></i> Attendance</a>
@@ -137,35 +145,35 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
                         <?php
                 if($sem[1]=='sem1')
                     {
-                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 1</span>';
+                        echo'<span id="myIntro" class="w3-hide headd" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 1</span>';
                     }
                     else if($sem[1]=='sem2')
                     {
-                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;margin-top:20px;">Semester 2</span>';
+                        echo'<span id="myIntro" class="w3-hide headd" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;margin-top:20px;">Semester 2</span>';
                     }
                     else if($sem[1]=='sem3')
                     {
-                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 3</span>';
+                        echo'<span id="myIntro" class="w3-hide headd" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 3</span>';
                     }
                     else if($sem[1]=='sem4')
                     {
-                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 4</span>';
+                        echo'<span id="myIntro" class="w3-hide headd" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 4</span>';
                     }
                     else if($sem[1]=='sem5')
                     {
-                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 5</span>';
+                        echo'<span id="myIntro" class="w3-hide headd" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 5</span>';
                     }
                     else if($sem[1]=='sem6')
                     {
-                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 6</span>';
+                        echo'<span id="myIntro" class="w3-hide headd" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 6</span>';
                     }
                     else if($sem[1]=='sem7')
                     {
-                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 7</span>';
+                        echo'<span id="myIntro" class="w3-hide headd" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 7</span>';
                     }
                     else if($sem[1]=='sem8')
                     {
-                        echo'<span id="myIntro" class="w3-hide" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 8</span>';
+                        echo'<span id="myIntro" class="w3-hide headd" style="font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px 3px #000000;">Semester 8</span>';
                     }
                    ?></p>
                     </div>
@@ -270,8 +278,8 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
                             echo "<td>" . $row['end_intern'] . "</td>";
                             echo "<td>";
                                 
-                                echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['id'] .'&batch'.$_GET['batch'].'&name='.$_GET['name'].'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
-                                echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'&batch'.$_GET['batch'].'&name='.$_GET['name'].'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
+                                echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['rollno'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
+                                echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
                             echo "</td>";
                         echo "</tr>";
                        

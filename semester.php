@@ -23,9 +23,9 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
     <link rel="icon" href="logo.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -33,86 +33,84 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
-    <style>
-    body {font-family:sans-serif;}
-    .w3-bar-block .w3-bar-item {
-      padding: 16px;
-      font-weight: bold;
-  }
-
-  .w3-bar-item{
-    padding: 16px;
-    letter-spacing: 1px;
-    font-weight: bold;
-    background-color:#1E6091;
-    color:#D9ED92;
+    <style type="text/css">
+        body {font-family: sans-serif}
+.w3-theme{
+    color: #fff!important;
 }
-.w3-bar-item:hover {
-    padding: 16px;
-    letter-spacing: 1px;
-    font-weight: bold;
-    color:#1E6091!important;
-    background-color:#D9ED92!important;
-    
-}
-.bluecolor {
-    background-color:#1E6091!important;
-}
-.w3-leftbar{
-    border-left:#1E6091!important;
-}
+        .w3-bar-block .w3-bar-item {
+          padding: 16px!important;
+          font-weight: bold;
+        }
+        .w3-bar-item{
+            padding: 16px;
+            letter-spacing: 1px;
+            font-weight: bold;
+            background-color:#25274d;
+            color: #aaabb8;
+                }
+        .w3-bar-item:hover {
+            padding: 16px;
+            letter-spacing: 1px;
+            font-weight: bold;
+            color:  #aaabb8!important;
+            background-color:#29648a!important;
 
-#customers {
-  font-family:  Helvetica ;
-  border-collapse: collapse;
-  width: 100%;
+                }
+        .bluecolor {
+            background-color:#25274d!important;
+                }
+        .w3-leftbar{
+            border-left:#1E6091!important;
+                }
+        #customers {
+          font-family: sans-serif, Arial, Helvetica ;
+          border-collapse: collapse;
+          width: 100%; 
+        }
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+        #customers tr:hover {background-color: #ddd;}
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #25274d;
+          color: #aaabb8;
+        }
+      
+        .topnav a {
+          float: left;
+          display: block;
+          color: #aaabb8;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+          border-left: 7px solid transparent;
+        }
+        .topnav a.active {
+          border-left: 7px solid #2e9cca;
+          color: #2e9cca;
+          background-color: rgba(0, 0, 0, 0.3);
+        }
+        td {overflow:hidden; white-space:nowrap}
+        .grid-container {
+          display: grid;
+          grid: 300px / auto auto;
+          grid-gap: 50px;
+          padding: 10px;
+        }
 
-  box-shadow:5px 5px 5px 5px grey; 
-}
+        .headd{
+            color: #aaabb8;
+            text-shadow: 2px 2px 1px #000000!important;
+        }
 
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#customers tr:nth-child(even){background-color: #f2f2f2;}
-
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: rgba(52, 160, 164, 0.4);
-  color: #184E77;
-}
-
-
-
-
-
-
-.topnav a {
-  float: left;
-  display: block;
-  color: #D9ED92;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  border-left: 7px solid transparent;
-}
-
-
-
-.topnav a.active {
-  border-left: 7px solid #76C893;
-  color: #76C893;
-  background-color: rgba(0, 0, 0, 0.3);
-
-
-}
-</style>
+    </style>
 </head>
 <body>
 
@@ -266,7 +264,7 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
                         
                         echo "<td>";
                         
-                        echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
+                        echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['rollno'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
                         echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
                         echo "</td>";
                         echo "</tr>";
