@@ -21,7 +21,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     
     
         $db_conn=get_db_connection();
-        $sql = "DELETE FROM ".$_GET['batch']." WHERE rollno='".$_POST['id']."'";
+        $sql="DELETE FROM ".$_GET['batch']." WHERE rollno='".$_POST['id']."'";
         $sql1="DELETE FROM ".$_GET['name']." WHERE rollno='".$_POST['id']."'";
 
        if(isset($_POST['submit3']))

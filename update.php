@@ -55,7 +55,22 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         // Prepare an update statement
         $db_conn=get_db_connection();
         $sql = "UPDATE ".$_GET['batch']." SET name='".$_POST['name']."',fathername='".$_POST['fathername']."',mothername='".$_POST['mothername']."',dob='".$_POST['dob']."',schoolname='".$_POST['schoolname']."',sslc='".$_POST['sslc']."',hsc='".$_POST['hsc']."',address='".$_POST['address']."' WHERE rollno='".$_POST['id']."'";
+        if($sem[1]=='sem1')
         $sql1="UPDATE ".$_GET['name']." SET name='".$_POST['name']."',attendance='".$_POST['attendance']."',office_name='".$_POST['office_name']."',domain='".$_POST['domain']."',duration_intern='".$_POST['duration_intern']."',start_intern='".$_POST['start_intern']."',end_intern='".$_POST['end_intern']."',ecube_topic='".$_POST['ecube_topic']."',company_name='".$_POST['company_name']."',visit_date='".$_POST['visit_date']."',summary_iv='".$_POST['summary_iv']."',comm_eng='".$_POST['comm_eng']."',math='".$_POST['math']."',eng_phy='".$_POST['eng_phy']."',eng_che='".$_POST['eng_che']."',pspp='".$_POST['pspp']."',eng_gra='".$_POST['eng_gra']."',pspplab='".$_POST['pspplab']."',pclab='".$_POST['pclab']."',gpa='".$_POST['gpa']."',cgpa='".$_POST['cgpa']."' WHERE rollno=".$_POST['id']."";
+    else if($sem[1]=='sem2')
+        $sql1="UPDATE ".$_GET['name']." SET name='".$_POST['name']."',attendance='".$_POST['attendance']."',office_name='".$_POST['office_name']."',domain='".$_POST['domain']."',duration_intern='".$_POST['duration_intern']."',start_intern='".$_POST['start_intern']."',end_intern='".$_POST['end_intern']."',ecube_topic='".$_POST['ecube_topic']."',company_name='".$_POST['company_name']."',visit_date='".$_POST['visit_date']."',summary_iv='".$_POST['summary_iv']."',tech_eng='".$_POST['tech_eng']."',math='".$_POST['math']."',phy_is='".$_POST['phy_is']."',beeme='".$_POST['beeme']."',evs='".$_POST['evs']."',p_in_c='".$_POST['p_in_c']."',eplab='".$_POST['eplab']."',clab='".$_POST['clab']."',gpa='".$_POST['gpa']."',cgpa='".$_POST['cgpa']."' WHERE rollno=".$_POST['id']."";
+    else if($sem[1]=='sem3')
+        $sql1="UPDATE ".$_GET['name']." SET name='".$_POST['name']."',attendance='".$_POST['attendance']."',office_name='".$_POST['office_name']."',domain='".$_POST['domain']."',duration_intern='".$_POST['duration_intern']."',start_intern='".$_POST['start_intern']."',end_intern='".$_POST['end_intern']."',ecube_topic='".$_POST['ecube_topic']."',company_name='".$_POST['company_name']."',visit_date='".$_POST['visit_date']."',summary_iv='".$_POST['summary_iv']."',disc_math='".$_POST['disc_math']."',dpsd='".$_POST['dpsd']."',ds='".$_POST['ds']."',oops='".$_POST['oops']."',ce='".$_POST['ce']."'dslaba='".$_POST['dslab']."',oopslab='".$_POST['oopslab']."',dpsdlab='".$_POST['dpsdlab']."',isllab='".$_POST['isllab']."',gpa='".$_POST['gpa']."',cgpa='".$_POST['cgpa']."' WHERE rollno=".$_POST['id']."";
+    else if($sem[1]=='sem4')
+        $sql1="UPDATE ".$_GET['name']." SET name='".$_POST['name']."',attendance='".$_POST['attendance']."',office_name='".$_POST['office_name']."',domain='".$_POST['domain']."',duration_intern='".$_POST['duration_intern']."',start_intern='".$_POST['start_intern']."',end_intern='".$_POST['end_intern']."',ecube_topic='".$_POST['ecube_topic']."',company_name='".$_POST['company_name']."',visit_date='".$_POST['visit_date']."',summary_iv='".$_POST['summary_iv']."',pqt='".$_POST['pqt']."',ca='".$_POST['ca']."',dbms='".$_POST['dbms']."',daa='".$_POST['daa']."',os='".$_POST['os']."',se='".$_POST['se']."',dbmslab='".$_POST['dbmslab']."',oslab='".$_POST['oslab']."',awa='".$_POST['awa']."',gpa='".$_POST['gpa']."',cgpa='".$_POST['cgpa']."' WHERE rollno=".$_POST['id']."";
+    else if($sem[1]=='sem5')
+        $sql1="UPDATE ".$_GET['name']." SET name='".$_POST['name']."',attendance='".$_POST['attendance']."',office_name='".$_POST['office_name']."',domain='".$_POST['domain']."',duration_intern='".$_POST['duration_intern']."',start_intern='".$_POST['start_intern']."',end_intern='".$_POST['end_intern']."',ecube_topic='".$_POST['ecube_topic']."',company_name='".$_POST['company_name']."',visit_date='".$_POST['visit_date']."',summary_iv='".$_POST['summary_iv']."',ant='".$_POST['ant']."',cn='".$_POST['cn']."',mpmc='".$_POST['mpmc']."',toc='".$_POST['toc']."',ooad='".$_POST['ooad']."',oe1='".$_POST['oe1']."',mpmclab='".$_POST['mpmclab']."',ooadlab='".$_POST['ooadlab']."',cnlab='".$_POST['cnlab']."',gpa='".$_POST['gpa']."',cgpa='".$_POST['cgpa']."' WHERE rollno=".$_POST['id']."";
+    else if($sem[1]=='sem6')
+        $sql1="UPDATE ".$_GET['name']." SET name='".$_POST['name']."',attendance='".$_POST['attendance']."',office_name='".$_POST['office_name']."',domain='".$_POST['domain']."',duration_intern='".$_POST['duration_intern']."',start_intern='".$_POST['start_intern']."',end_intern='".$_POST['end_intern']."',ecube_topic='".$_POST['ecube_topic']."',company_name='".$_POST['company_name']."',visit_date='".$_POST['visit_date']."',summary_iv='".$_POST['summary_iv']."',ip='".$_POST['ip']."',ai='".$_POST['ai']."',mc='".$_POST['mc']."',cd='".$_POST['cd']."',ds='".$_POST['ds']."',pe1='".$_POST['pe1']."',iplab='".$_POST['iplab']."',madlab='".$_POST['madlab']."',minipr='".$_POST['minipr']."',gpa='".$_POST['gpa']."',cgpa='".$_POST['cgpa']."' WHERE rollno=".$_POST['id']."";
+    else if($sem[1]=='sem7')
+        $sql1="UPDATE ".$_GET['name']." SET name='".$_POST['name']."',attendance='".$_POST['attendance']."',office_name='".$_POST['office_name']."',domain='".$_POST['domain']."',duration_intern='".$_POST['duration_intern']."',start_intern='".$_POST['start_intern']."',end_intern='".$_POST['end_intern']."',ecube_topic='".$_POST['ecube_topic']."',company_name='".$_POST['company_name']."',visit_date='".$_POST['visit_date']."',summary_iv='".$_POST['summary_iv']."',pom='".$_POST['pom']."',cns='".$_POST['cns']."',cc='".$_POST['cc']."',oe2='".$_POST['oe2']."',pe2='".$_POST['pe2']."',pe3='".$_POST['pe3']."',cclab='".$_POST['cclab']."',seclab='".$_POST['seclab']."',gpa='".$_POST['gpa']."',cgpa='".$_POST['cgpa']."' WHERE rollno=".$_POST['id']."";
+    else if($sem[1]=='sem8')
+        $sql1="UPDATE ".$_GET['name']." SET name='".$_POST['name']."',attendance='".$_POST['attendance']."',office_name='".$_POST['office_name']."',domain='".$_POST['domain']."',duration_intern='".$_POST['duration_intern']."',start_intern='".$_POST['start_intern']."',end_intern='".$_POST['end_intern']."',ecube_topic='".$_POST['ecube_topic']."',company_name='".$_POST['company_name']."',visit_date='".$_POST['visit_date']."',summary_iv='".$_POST['summary_iv']."',pe4='".$_POST['pe4']."',pe5='".$_POST['pe5']."',project='".$_POST['project']."',gpa='".$_POST['gpa']."',cgpa='".$_POST['cgpa']."' WHERE rollno=".$_POST['id']."";
 
        if($result = mysqli_multi_query($db_conn, $sql))
        {
@@ -64,11 +79,11 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             header("location: semester.php?name=".$_GET['name']."&batch=".$_GET['batch']);
             exit();
         }else{
-            $flag=2
+            $flag=2;
             }
         } 
         else{
-            $flag=2
+            $flag=2;
             }
              mysqli_close($db_conn);
         }
@@ -607,7 +622,268 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         </div></div>';
 
-                       } ?><br>
+                       }
+                       else if($sem[1]=='sem3')
+                       {
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[2][0].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['disc_math'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[2][1].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['dpsd'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[2][2].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['ds'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[2][3].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['oops'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[2][4].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['ce'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[2][5].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['dslab'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[2][6].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['oopslab'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[2][7].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['dpsdlab'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[2][8].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['isllab'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+
+                       }
+                       else if($sem[1]=='sem4')
+                       {
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[3][0].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['pqt'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[3][1].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['ca'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[3][2].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['dbms'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[3][3].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['daa'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[3][4].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['os'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[3][5].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['se'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[3][6].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['dbmslab'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[3][7].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['oslab'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[3][8].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['awa'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+
+                       }
+                       else if($sem[1]=='sem5')
+                       {
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[4][0].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['ant'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[4][1].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['cn'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[4][2].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['mpmc'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[4][3].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['toc'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[4][4].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['ooad'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[4][5].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['oe1'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[4][6].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['mpmclab'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[4][7].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['ooadlab'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[4][8].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['cnlab'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+
+                       }
+                       else if($sem[1]=='sem6')
+                       {
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[5][0].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['ip'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[5][1].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['ai'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[5][2].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['mc'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[5][3].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['cd'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[5][4].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['ds'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[5][5].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['pe1'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[5][6].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['iplab'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[5][7].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['madlab'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[5][8].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['minipr'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+
+                       }
+                       else if($sem[1]=='sem7')
+                       {
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[6][0].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['pom'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[6][1].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['cns'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[6][2].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['cc'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[6][3].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['oe2'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[6][4].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['pe2'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[6][5].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['pe3'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[6][6].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['cclab'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[6][7].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['seclab'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+
+                       }
+                       else if($sem[1]=='sem8')
+                       {
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[7][0].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['pe4'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        echo'<div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[7][1].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['pe5'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div></div>';
+                        echo'<div class="row g-3"><div class="col-sm-3">
+                            <label style="margin-left: 40%;">'.$subjects[7][2].' * :</label></div><div class="col-sm-3">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['project'].'">
+                            <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                        </div>';
+                        
+
+                       }
+                   ?><br>
                        
                             <div class="row g-3"><div class="col-sm-3">
                                 <label style="margin-left: 5%; ">GPA * :</label></div><div class="col-sm-3">
