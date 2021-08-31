@@ -15,11 +15,12 @@ else {
 }
 
 $sem=preg_split("/[\d]/", $_GET['name'], 2);
+$count=1;
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MSEC CSE</title>
+    <title>SEMESTER | MSEC/title>
     <link rel="icon" href="logo.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -38,6 +39,9 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
 .w3-theme{
     color: #fff!important;
 }
+.bluecolor {
+            background-color:#25274d!important;
+                }
         .w3-bar-block .w3-bar-item {
           padding: 16px!important;
           font-weight: bold;
@@ -57,9 +61,8 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
             background-color:#29648a!important;
 
                 }
-        .bluecolor {
-            background-color:#25274d!important;
-                }
+
+       
         .w3-leftbar{
             border-left:#1E6091!important;
                 }
@@ -232,9 +235,9 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
                     </header>
 
             <div class="w3-container" style="padding:32px">
-               <a href="" class="btn btn-success pull-left" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-plus"></i><b>  ADD</b></a> &nbsp; &nbsp;
-               <i class="fa fa-search" aria-hidden="true" style=" "></i>&nbsp;<input style="height: 35px; border-color:#76C893; border-radius: 10%; " type="text" placeholder=" Search..">
-               <button onclick="ExportToExcel('xlsx')" class="btn btn-success pull-right" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-download" aria-hidden="true"></i><b>  EXPORT</b></button>
+                <H3 class="w3-xxxlarge" style="font-size: 40px!important;font-weight: bold;">NAME LIST :</H3>
+               <a href="add.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>" class="btn btn-success pull-left" style="background-color: #2e9cca; border-color: #76C893; color: black;"><i class="fa fa-plus"></i><b>  ADD</b></a> &nbsp; &nbsp;
+               <button onclick="ExportToExcel('xlsx')" class="btn btn-success pull-right" style="background-color: #2e9cca; border-color: #76C893; color: black;"><i class="fa fa-download" aria-hidden="true"></i><b>  EXPORT</b></button>
                <br><br><br>
 
                <?php
@@ -249,7 +252,7 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
                     echo '<table  class="table table-bordered table-striped" id="customers">';
                     echo "<thead>";
                     echo "<tr>";
-                    echo "<th>ID</th>";
+                    echo "<th>S.NO.</th>";
                     echo "<th>NAME</th>";
                     echo "<th>REGISTER NUMBER</th>";
                     echo "<th>ACTION</th>";
@@ -258,16 +261,17 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
                     echo "<tbody>";
                     while($row = mysqli_fetch_array($result)){
                         echo "<tr>";
-                        echo "<td>" . $row['id'] . "</td>";
+                        echo "<td>" . $count . "</td>";
                         echo "<td><a href=\"summary.php?name=".$_GET['name']."&batch=".$_GET['batch']."&id=".$row['rollno']."\">". $row['name'] . "</a></td>";
                         echo "<td>" . $row['rollno'] . "</td>";
                         
                         echo "<td>";
                         
                         echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['rollno'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
-                        echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
+                        echo '<a style="color:red;" href="delete.php?id='. $row['rollno'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
                         echo "</td>";
                         echo "</tr>";
+                        $count=$count+1;
                     }
                     echo "</tbody>";                            
                     echo "</table>";
@@ -277,7 +281,7 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
                     echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo '<div class="alert alert-danger"><em>No records were found!.</em></div>';
             }
 
     // Close connection

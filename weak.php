@@ -234,9 +234,9 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
 
     <div class="w3-container" style="padding:32px">
         <H3 class="w3-xxxlarge" style="font-size: 40px!important;font-weight: bold;">WEAK:</H3>
-       <a href="" class="btn btn-success pull-left" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-plus"></i><b>  ADD</b></a> &nbsp; &nbsp;
+       <a href="add.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>" class="btn btn-success pull-left" style="background-color: #2e9cca; border-color: #76C893; color: black;"><i class="fa fa-plus"></i><b>  ADD</b></a> &nbsp; &nbsp;
 
-       <button onclick="ExportToExcel('xlsx')" class="btn btn-success pull-right" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-download" aria-hidden="true"></i><b>  EXPORT</b></button>
+       <button onclick="ExportToExcel('xlsx')" class="btn btn-success pull-right" style="background-color: #2e9cca; border-color: #76C893; color: black;"><i class="fa fa-download" aria-hidden="true"></i><b>  EXPORT</b></button>
        <br><br><br>
 
        <?php
@@ -310,7 +310,7 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
                 echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
             }
         } else{
-            echo "Oops! Something went wrong. Please try again later.";
+            echo '<div class="alert alert-danger"><em>No records were found!.</em></div>';
         }
     }
     else if($sem[1]=='sem2')
@@ -379,32 +379,420 @@ $sem=preg_split("/[\d]/", $_GET['name'], 2);
                 echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
             }
         } else{
-            echo "Oops! Something went wrong. Please try again later.";
+            echo '<div class="alert alert-danger"><em>No records were found!.</em></div>';
         }
     }
     else if($sem[1]=='sem3')
     {
+        if($_GET['batch']=="batch1")
+            $sql = "SELECT `id` , `rollno`, `name`, `discˍmath`, `dpsd`, `ds`, `oops`, `ce`, `dslab`, `oopslab`, `dpsdlab`,`isllab`, `gpa`, `cgpa` FROM msec.batch1sem3 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch2")
+            $sql = "SELECT `id` , `rollno`, `name`, `discˍmath`, `dpsd`, `ds`, `oops`, `ce`, `dslab`, `oopslab`, `dpsdlab`,`isllab`, `gpa`, `cgpa` FROM msec.batch2sem3 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch3")
+            $sql = "SELECT `id` , `rollno`, `name`, `discˍmath`, `dpsd`, `ds`, `oops`, `ce`, `dslab`, `oopslab`, `dpsdlab`,`isllab`, `gpa`, `cgpa` FROM msec.batch3sem3 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch4")
+            $sql = "SELECT `id` , `rollno`, `name`, `discˍmath`, `dpsd`, `ds`, `oops`, `ce`, `dslab`, `oopslab`, `dpsdlab`,`isllab`, `gpa`, `cgpa` FROM msec.batch4sem3 ORDER BY gpa ASC";
+        if($result = mysqli_query($db_conn, $sql)){
+            if(mysqli_num_rows($result) > 0 ){
+                echo '<div style="overflow-x:auto;">';
+                echo '<table  class="table table-bordered table-striped" id="customers">';
+                echo "<thead>";
+                echo "<tr>";
+                echo "<th>S.NO.</th>";
+                echo "<th>NAME</th>";
+                echo "<th>REGISTER NUMBER</th>";
+                echo "<th>".$subjects[2][0]."</th>";
+                echo "<th>".$subjects[2][1]."</th>";
+                echo "<th>".$subjects[2][2]."</th>";
+                echo "<th>".$subjects[2][3]."</th>";
+                echo "<th>".$subjects[2][4]."</th>";
+                echo "<th>".$subjects[2][5]."</th>";
+                echo "<th>".$subjects[2][6]."</th>";
+                echo "<th>".$subjects[2][7]."</th>";
+                echo "<th>".$subjects[2][8]."</th>";
+                echo "<th>GPA</th>";
+                echo "<th>CGPA</th>";
+                echo "<th style=\"text-align:center\">ACTION</th>";
+                echo "</tr>";
+                echo "</thead>";
+                echo "<tbody>";
+                while(($row = mysqli_fetch_array($result)) && ($count<11)){
+                    echo "<tr>";
+                    echo "<td>" . $count . "</td>";
+                    echo "<td>" . $row['name'] . "</td>";
+                    echo "<td>" . $row['rollno'] . "</td>";
+                    echo "<td>" . $row['disc_math'] . "</td>";
+                    echo "<td>" . $row['dpsd'] . "</td>";
+                    echo "<td>" . $row['ds'] . "</td>";
+                    echo "<td>" . $row['oops'] . "</td>";
+                    echo "<td>" . $row['ce'] . "</td>";
+                    echo "<td>" . $row['dslab'] . "</td>";
+                    echo "<td>" . $row['ooplab'] . "</td>";
+                    echo "<td>" . $row['dpsdlab'] . "</td>";
+                    echo "<td>" . $row['isllab'] . "</td>";
+                    echo "<td>" . $row['gpa'] . "</td>";
+                    echo "<td>" . $row['cgpa'] . "</td>";
+                    echo "<td>";
 
+                    echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['id'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
+                    echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
+                    echo "</td>";
+                    echo "</tr>";
+
+                    $count=$count+1;
+                }
+                echo "</tbody>";                            
+                echo "</table>";
+                echo "</div>";
+                // Free result set
+                mysqli_free_result($result);
+            } else{
+                echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+            }
+        } else{
+            echo '<div class="alert alert-danger"><em>No records were found!.</em></div>';
+        }
     }
     else if($sem[1]=='sem4')
     {
+        if($_GET['batch']=="batch1")
+            $sql = "SELECT `id` , `rollno`, `name`, `pqt`, `ca`, `dbms`, `daa`, `os`, `se`, `dbmslab`, `oslab`,`awa`, `gpa`, `cgpa` FROM msec.batch1sem4 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch2")
+            $sql = "SELECT `id` , `rollno`, `name`, `pqt`, `ca`, `dbms`, `daa`, `os`, `se`, `dbmslab`, `oslab`,`awa`, `gpa`, `cgpa` FROM msec.batch2sem4 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch3")
+            $sql = "SELECT `id` , `rollno`, `name`, `pqt`, `ca`, `dbms`, `daa`, `os`, `se`, `dbmslab`, `oslab`,`awa`, `gpa`, `cgpa` FROM msec.batch3sem4 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch4")
+            $sql = "SELECT `id` , `rollno`, `name`, `pqt`, `ca`, `dbms`, `daa`, `os`, `se`, `dbmslab`, `oslab`,`awa`, `gpa`, `cgpa` FROM msec.batch4sem4 ORDER BY gpa ASC";
+        if($result = mysqli_query($db_conn, $sql)){
+            if(mysqli_num_rows($result) > 0 ){
+                echo '<div style="overflow-x:auto;">';
+                echo '<table  class="table table-bordered table-striped" id="customers">';
+                echo "<thead>";
+                echo "<tr>";
+                echo "<th>S.NO.</th>";
+                echo "<th>NAME</th>";
+                echo "<th>REGISTER NUMBER</th>";
+                echo "<th>".$subjects[3][0]."</th>";
+                echo "<th>".$subjects[3][1]."</th>";
+                echo "<th>".$subjects[3][2]."</th>";
+                echo "<th>".$subjects[3][3]."</th>";
+                echo "<th>".$subjects[3][4]."</th>";
+                echo "<th>".$subjects[3][5]."</th>";
+                echo "<th>".$subjects[3][6]."</th>";
+                echo "<th>".$subjects[3][7]."</th>";
+                echo "<th>".$subjects[3][8]."</th>";
+                echo "<th>GPA</th>";
+                echo "<th>CGPA</th>";
+                echo "<th style=\"text-align:center\">ACTION</th>";
+                echo "</tr>";
+                echo "</thead>";
+                echo "<tbody>";
+                while(($row = mysqli_fetch_array($result)) && ($count<11)){
+                    echo "<tr>";
+                    echo "<td>" . $count . "</td>";
+                    echo "<td>" . $row['name'] . "</td>";
+                    echo "<td>" . $row['rollno'] . "</td>";
+                    echo "<td>" . $row['pqt'] . "</td>";
+                    echo "<td>" . $row['ca'] . "</td>";
+                    echo "<td>" . $row['dbms'] . "</td>";
+                    echo "<td>" . $row['daa'] . "</td>";
+                    echo "<td>" . $row['os'] . "</td>";
+                    echo "<td>" . $row['se'] . "</td>";
+                    echo "<td>" . $row['dbṁslab'] . "</td>";
+                    echo "<td>" . $row['oslab'] . "</td>";
+                    echo "<td>" . $row['awa'] . "</td>";
+                    echo "<td>" . $row['gpa'] . "</td>";
+                    echo "<td>" . $row['cgpa'] . "</td>";
+                    echo "<td>";
 
+                    echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['id'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
+                    echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
+                    echo "</td>";
+                    echo "</tr>";
+
+                    $count=$count+1;
+                }
+                echo "</tbody>";                            
+                echo "</table>";
+                echo "</div>";
+                // Free result set
+                mysqli_free_result($result);
+            } else{
+                echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+            }
+        } else{
+            echo '<div class="alert alert-danger"><em>No records were found!.</em></div>';
+        }
     }
     else if($sem[1]=='sem5')
     {
+        if($_GET['batch']=="batch1")
+            $sql = "SELECT `id` , `rollno`, `name`, `ant`, `cn`, `mpmc`, `toc`, `ooad`, `oe1`, `mpmclab`, `ooadlab`, `cnlab`, `gpa`, `cgpa` FROM msec.batch1sem5 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch2")
+            $sql = "SELECT `id` , `rollno`, `name`, `ant`, `cn`, `mpmc`, `toc`, `ooad`, `oe1`, `mpmclab`, `ooadlab`, `cnlab`, `gpa`, `cgpa` FROM msec.batch2sem5 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch3")
+            $sql = "SELECT `id` , `rollno`, `name`, `ant`, `cn`, `mpmc`, `toc`, `ooad`, `oe1`, `mpmclab`, `ooadlab`, `cnlab`, `gpa`, `cgpa` FROM msec.batch3sem5 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch4")
+            $sql = "SELECT `id` , `rollno`, `name`, `ant`, `cn`, `mpmc`, `toc`, `ooad`, `oe1`, `mpmclab`, `ooadlab`, `cnlab`, `gpa`, `cgpa` FROM msec.batch4sem5 ORDER BY gpa ASC";
+        if($result = mysqli_query($db_conn, $sql)){
+            if(mysqli_num_rows($result) > 0 ){
+                echo '<div style="overflow-x:auto;">';
+                echo '<table  class="table table-bordered table-striped" id="customers">';
+                echo "<thead>";
+                echo "<tr>";
+                echo "<th>S.NO.</th>";
+                echo "<th>NAME</th>";
+                echo "<th>REGISTER NUMBER</th>";
+                echo "<th>".$subjects[4][0]."</th>";
+                echo "<th>".$subjects[4][1]."</th>";
+                echo "<th>".$subjects[4][2]."</th>";
+                echo "<th>".$subjects[4][3]."</th>";
+                echo "<th>".$subjects[4][4]."</th>";
+                echo "<th>".$subjects[4][5]."</th>";
+                echo "<th>".$subjects[4][6]."</th>";
+                echo "<th>".$subjects[4][7]."</th>";
+                echo "<th>".$subjects[4][8]."</th>";
+                echo "<th>GPA</th>";
+                echo "<th>CGPA</th>";
+                echo "<th style=\"text-align:center\">ACTION</th>";
+                echo "</tr>";
+                echo "</thead>";
+                echo "<tbody>";
+                while(($row = mysqli_fetch_array($result)) && ($count<11)){
+                    echo "<tr>";
+                    echo "<td>" . $count . "</td>";
+                    echo "<td>" . $row['name'] . "</td>";
+                    echo "<td>" . $row['rollno'] . "</td>";
+                    echo "<td>" . $row['ant'] . "</td>";
+                    echo "<td>" . $row['cn'] . "</td>";
+                    echo "<td>" . $row['mpmc'] . "</td>";
+                    echo "<td>" . $row['toc'] . "</td>";
+                    echo "<td>" . $row['ooad'] . "</td>";
+                    echo "<td>" . $row['oe1'] . "</td>";
+                    echo "<td>" . $row['mpmclab'] . "</td>";
+                    echo "<td>" . $row['ooadlab'] . "</td>";
+                    echo "<td>" . $row['cnlab'] . "</td>";
+                    echo "<td>" . $row['gpa'] . "</td>";
+                    echo "<td>" . $row['cgpa'] . "</td>";
+                    echo "<td>";
 
+                    echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['id'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
+                    echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
+                    echo "</td>";
+                    echo "</tr>";
+
+                    $count=$count+1;
+                }
+                echo "</tbody>";                            
+                echo "</table>";
+                echo "</div>";
+                // Free result set
+                mysqli_free_result($result);
+            } else{
+                echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+            }
+        } else{
+            echo '<div class="alert alert-danger"><em>No records were found!.</em></div>';
+        }
     }
     else if($sem[1]=='sem6')
     {
+        if($_GET['batch']=="batch1")
+            $sql = "SELECT `id` , `rollno`, `name`, `ip`, `ai`, `mc`, `cd`, `ds`, `pe1`, `iplab`, `madlab`, `minipr` , `gpa`, `cgpa` FROM msec.batch1sem6 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch2")
+            $sql = "SELECT `id` , `rollno`, `name`, `ip`, `ai`, `mc`, `cd`, `ds`, `pe1`, `iplab`, `madlab`, `minipr` , `gpa`, `cgpa` FROM msec.batch2sem6 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch3")
+            $sql = "SELECT `id` , `rollno`, `name`, `ip`, `ai`, `mc`, `cd`, `ds`, `pe1`, `iplab`, `madlab`, `minipr` , `gpa`, `cgpa` FROM msec.batch3sem6 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch4")
+            $sql = "SELECT `id` , `rollno`, `name`, `ip`, `ai`, `mc`, `cd`, `ds`, `pe1`, `iplab`, `madlab`, `minipr` , `gpa`, `cgpa` FROM msec.batch4sem6 ORDER BY gpa ASC";
+        if($result = mysqli_query($db_conn, $sql)){
+            if(mysqli_num_rows($result) > 0 ){
+                echo '<div style="overflow-x:auto;">';
+                echo '<table  class="table table-bordered table-striped" id="customers">';
+                echo "<thead>";
+                echo "<tr>";
+                echo "<th>S.NO.</th>";
+                echo "<th>NAME</th>";
+                echo "<th>REGISTER NUMBER</th>";
+                echo "<th>".$subjects[5][0]."</th>";
+                echo "<th>".$subjects[5][1]."</th>";
+                echo "<th>".$subjects[5][2]."</th>";
+                echo "<th>".$subjects[5][3]."</th>";
+                echo "<th>".$subjects[5][4]."</th>";
+                echo "<th>".$subjects[5][5]."</th>";
+                echo "<th>".$subjects[5][6]."</th>";
+                echo "<th>".$subjects[5][7]."</th>";
+                echo "<th>".$subjects[5][8]."</th>";
+                echo "<th>GPA</th>";
+                echo "<th>CGPA</th>";
+                echo "<th style=\"text-align:center\">ACTION</th>";
+                echo "</tr>";
+                echo "</thead>";
+                echo "<tbody>";
+                while(($row = mysqli_fetch_array($result)) && ($count<11)){
+                    echo "<tr>";
+                    echo "<td>" . $count . "</td>";
+                    echo "<td>" . $row['name'] . "</td>";
+                    echo "<td>" . $row['rollno'] . "</td>";
+                    echo "<td>" . $row['ip'] . "</td>";
+                    echo "<td>" . $row['ai'] . "</td>";
+                    echo "<td>" . $row['mc'] . "</td>";
+                    echo "<td>" . $row['cd'] . "</td>";
+                    echo "<td>" . $row['ds'] . "</td>";
+                    echo "<td>" . $row['pe1'] . "</td>";
+                    echo "<td>" . $row['iplab'] . "</td>";
+                    echo "<td>" . $row['madlab'] . "</td>";
+                    echo "<td>" . $row['minipr'] . "</td>";
+                    echo "<td>" . $row['gpa'] . "</td>";
+                    echo "<td>" . $row['cgpa'] . "</td>";
+                    echo "<td>";
 
+                    echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['id'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
+                    echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
+                    echo "</td>";
+                    echo "</tr>";
+
+                    $count=$count+1;
+                }
+                echo "</tbody>";                            
+                echo "</table>";
+                echo "</div>";
+                // Free result set
+                mysqli_free_result($result);
+            } else{
+                echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+            }
+        } else{
+            echo '<div class="alert alert-danger"><em>No records were found!.</em></div>';
+        }
     }
     else if($sem[1]=='sem7')
     {
+        if($_GET['batch']=="batch1")
+            $sql = "SELECT `id` , `rollno`, `name`, `pom`, `cns`, `cc`, `oe2`, `pe2`, `pe3`, `cclab`, `seclab`, `gpa`, `cgpa` FROM msec.batch1sem7 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch2")
+            $sql = "SELECT `id` , `rollno`, `name`, `pom`, `cns`, `cc`, `oe2`, `pe2`, `pe3`, `cclab`, `seclab`, `gpa`, `cgpa` FROM msec.batch2sem7 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch3")
+            $sql = "SELECT `id` , `rollno`, `name`, `pom`, `cns`, `cc`, `oe2`, `pe2`, `pe3`, `cclab`, `seclab`, `gpa`, `cgpa` FROM msec.batch3sem7 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch4")
+            $sql = "SELECT `id` , `rollno`, `name`, `pom`, `cns`, `cc`, `oe2`, `pe2`, `pe3`, `cclab`, `seclab`, `gpa`, `cgpa` FROM msec.batch4sem7 ORDER BY gpa ASC";
+        if($result = mysqli_query($db_conn, $sql)){
+            if(mysqli_num_rows($result) > 0 ){
+                echo '<div style="overflow-x:auto;">';
+                echo '<table  class="table table-bordered table-striped" id="customers">';
+                echo "<thead>";
+                echo "<tr>";
+                echo "<th>S.NO.</th>";
+                echo "<th>NAME</th>";
+                echo "<th>REGISTER NUMBER</th>";
+                echo "<th>".$subjects[6][0]."</th>";
+                echo "<th>".$subjects[6][1]."</th>";
+                echo "<th>".$subjects[6][2]."</th>";
+                echo "<th>".$subjects[6][3]."</th>";
+                echo "<th>".$subjects[6][4]."</th>";
+                echo "<th>".$subjects[6][5]."</th>";
+                echo "<th>".$subjects[6][6]."</th>";
+                echo "<th>".$subjects[6][7]."</th>";
+                echo "<th>GPA</th>";
+                echo "<th>CGPA</th>";
+                echo "<th style=\"text-align:center\">ACTION</th>";
+                echo "</tr>";
+                echo "</thead>";
+                echo "<tbody>";
+                while(($row = mysqli_fetch_array($result)) && ($count<11)){
+                    echo "<tr>";
+                    echo "<td>" . $count . "</td>";
+                    echo "<td>" . $row['name'] . "</td>";
+                    echo "<td>" . $row['rollno'] . "</td>";
+                    echo "<td>" . $row['pom'] . "</td>";
+                    echo "<td>" . $row['cns'] . "</td>";
+                    echo "<td>" . $row['cc'] . "</td>";
+                    echo "<td>" . $row['oe2'] . "</td>";
+                    echo "<td>" . $row['pe2'] . "</td>";
+                    echo "<td>" . $row['pe3'] . "</td>";
+                    echo "<td>" . $row['cclab'] . "</td>";
+                    echo "<td>" . $row['seclab'] . "</td>";
+                    echo "<td>" . $row['gpa'] . "</td>";
+                    echo "<td>" . $row['cgpa'] . "</td>";
+                    echo "<td>";
 
+                    echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['id'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
+                    echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
+                    echo "</td>";
+                    echo "</tr>";
+
+                    $count=$count+1;
+                }
+                echo "</tbody>";                            
+                echo "</table>";
+                echo "</div>";
+                // Free result set
+                mysqli_free_result($result);
+            } else{
+                echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+            }
+        } else{
+            echo '<div class="alert alert-danger"><em>No records were found!.</em></div>';
+        }
     }
     else if($sem[1]=='sem8')
     {
+        if($_GET['batch']=="batch1")
+            $sql = "SELECT `id` , `rollno`, `name`, `pe4`, `pe5`, `project`, `gpa`, `cgpa` FROM msec.batch1sem8 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch2")
+            $sql = "SELECT `id` , `rollno`, `name`, `pe4`, `pe5`, `project`, `gpa`, `cgpa` FROM msec.batch2sem8 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch3")
+            $sql = "SELECT `id` , `rollno`, `name`, `pe4`, `pe5`, `project`, `gpa`, `cgpa` FROM msec.batch3sem8 ORDER BY gpa ASC";
+        if($_GET['batch']=="batch4")
+            $sql = "SELECT `id` , `rollno`, `name`, `pe4`, `pe5`, `project`, `gpa`, `cgpa` FROM msec.batch4sem8 ORDER BY gpa ASC";
+        if($result = mysqli_query($db_conn, $sql)){
+            if(mysqli_num_rows($result) > 0 ){
+                echo '<div style="overflow-x:auto;">';
+                echo '<table  class="table table-bordered table-striped" id="customers">';
+                echo "<thead>";
+                echo "<tr>";
+                echo "<th>S.NO.</th>";
+                echo "<th>NAME</th>";
+                echo "<th>REGISTER NUMBER</th>";
+                echo "<th>".$subjects[7][0]."</th>";
+                echo "<th>".$subjects[7][1]."</th>";
+                echo "<th>".$subjects[7][2]."</th>";
+                echo "<th>GPA</th>";
+                echo "<th>CGPA</th>";
+                echo "<th style=\"text-align:center\">ACTION</th>";
+                echo "</tr>";
+                echo "</thead>";
+                echo "<tbody>";
+                while(($row = mysqli_fetch_array($result)) && ($count<11)){
+                    echo "<tr>";
+                    echo "<td>" . $count . "</td>";
+                    echo "<td>" . $row['name'] . "</td>";
+                    echo "<td>" . $row['rollno'] . "</td>";
+                    echo "<td>" . $row['pe4'] . "</td>";
+                    echo "<td>" . $row['pe5'] . "</td>";
+                    echo "<td>" . $row['project'] . "</td>";
+                    echo "<td>" . $row['gpa'] . "</td>";
+                    echo "<td>" . $row['cgpa'] . "</td>";
+                    echo "<td>";
 
+                    echo '<a style="color:blue; font-weight: bolder;" href="update.php?id='. $row['id'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil">&nbsp <b> EDIT </b> &nbsp</span></a>';
+                    echo '<a style="color:red;" href="delete.php?id='. $row['id'] .'&batch='.$_GET['batch'].'&name='.$_GET['name'].'" title="Delete Record" data-toggle="tooltip"><span  class="fa fa-trash">&nbsp <b> DELETE &nbsp</b></span></a>';
+                    echo "</td>";
+                    echo "</tr>";
+
+                    $count=$count+1;
+                }
+                echo "</tbody>";                            
+                echo "</table>";
+                echo "</div>";
+                // Free result set
+                mysqli_free_result($result);
+            } else{
+                echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+            }
+        } else{
+            echo '<div class="alert alert-danger"><em>No records were found!.</em></div>';
+        }
     }
     else
     {

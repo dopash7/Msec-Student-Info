@@ -17,7 +17,7 @@ else {
 
 
 $sem=preg_split("/[\d]/", $_GET['name'], 2);
-
+$count=1;
 $subjects=array(array("Communicative English","Engineering Mathematics-I","Engineering Physics","Engineering Chemistry","Problem Solving and Python Programming","Engineering Graphics","PSPP Lab","P&C Lab"),array("Technical English","Engineering Mathematics-II","Physics for Information Science","Basic Electrical,Electronics and Measurement Engineering","Environmental Science and Engineering","Programming in C","EPs Lab","CP Lab"),array("Discrete Mathematics","Digital Principles and Design","Data Structures","Object Oriented Programming","Communication Engineering","DS Lab","OOP Lab","DS Lab","Interpersonal Skills/Listening & Speaking"),array("Probability and Queuing Theory","Computer Architecture","Database Management Systems","Design and Analysis of Algorithms","Operating Systems","Software Engineering","DBMS Lab","OS Lab","Advance Reading and Writing"),array("Algebra and Number Theory","Computer Networks","Microprocessors and Microcontrollers","Theory of Computation","Object Oriented Analysis and Design","Open Elective I","MPMC Lab","OOAD Lab","CN Lab"),array("Internet Programming","Artificial Intelligence","Mobile Computing","Complier Design","Distributed Systems","Professional Elective I","IP lab","MAD Lab","Mini Project"),array("Principles of Management","Cryptography and Network Security","Cloud Computing","Open Elective II","Professional Elective II","Professional Elective III","CC Lab","Security Lab"),array("Professional Elective IV","Professional Elective V","Project Work"));
 
 ?>
@@ -133,7 +133,7 @@ body {font-family: sans-serif}
 
         <a class="w3-bar-item w3-button " href="semester.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch'] ;?>"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Students</a>
         <a class="w3-bar-item w3-button" href="personaldetails.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch'] ;?>"><i class='far fa-folder-open' ></i> Personal Details</a>
-        <a class="w3-bar-item w3-button" href="#"><i class='far fa-edit'></i> Marks</a>
+        <a class="w3-bar-item w3-button" href="mark.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='far fa-edit'></i> Marks</a>
         <a class="w3-bar-item w3-button" href="aep.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-book-reader'></i> AEP</a>
         <a class="w3-bar-item w3-button" href="weak.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='fas fa-chalkboard-teacher'></i> Weak</a>
         <a class="w3-bar-item w3-button " href="attendance.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>"><i class='far fa-calendar-check'></i> Attendance</a>
@@ -244,7 +244,7 @@ body {font-family: sans-serif}
     <div class="w3-container" style="padding:32px">
 
        <H3 class="w3-xxxlarge" style="font-size: 40px!important;font-weight: bold;">INDIVIDUAL INFO:</H3>
-       <a href="" class="btn btn-success pull-left" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-plus"></i><b>  ADD</b></a> &nbsp; &nbsp;
+       <a href="add.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>" class="btn btn-success pull-left" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-plus"></i><b>  ADD</b></a> &nbsp; &nbsp;
 
        <a href="" class="btn btn-success pull-right" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-download" aria-hidden="true"></i><b>  EXPORT</b></a>
        <br><br><br>
@@ -380,27 +380,198 @@ body {font-family: sans-serif}
         }
         else if($sem[1]=='sem3')
         {
-
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[2][0]." </STRONG></div><div class=\"col-sm-3\">: ". $row['disc_math'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[2][1]." </STRONG></div><div class=\"col-sm-3\">: ". $row['dpsd'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[2][2]." </STRONG></div><div class=\"col-sm-3\">: ". $row['ds'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[2][3]." </STRONG></div><div class=\"col-sm-3\">: ". $row['oops'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[2][4]." </STRONG></div><div class=\"col-sm-3\">: ". $row['ce'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[2][5]." </STRONG></div><div class=\"col-sm-3\">: ". $row['dslab'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[2][6]." </STRONG></div><div class=\"col-sm-3\">: ". $row['oopslab'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[2][7]." </STRONG></div><div class=\"col-sm-3\">: ". $row['dpsdlab'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[2][8]." </STRONG></div><div class=\"col-sm-3\">: ". $row['isllab'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>GPA </STRONG></div><div class="col-sm-3">: '. $row['gpa'] .'
+            </div>';
+            echo '<div class="col-sm-6">
+            <STRONG>CGPA </STRONG></div><div class="col-sm-3">: '. $row['cgpa'] .'
+            </div>';
         }
         else if($sem[1]=='sem4')
         {
-
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[3][0]." </STRONG></div><div class=\"col-sm-3\">: ". $row['pqt'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[3][1]." </STRONG></div><div class=\"col-sm-3\">: ". $row['ca'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[3][2]." </STRONG></div><div class=\"col-sm-3\">: ". $row['dbms'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[3][3]." </STRONG></div><div class=\"col-sm-3\">: ". $row['daa'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[3][4]." </STRONG></div><div class=\"col-sm-3\">: ". $row['os'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[3][5]." </STRONG></div><div class=\"col-sm-3\">: ". $row['se'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[3][6]." </STRONG></div><div class=\"col-sm-3\">: ". $row['dbmslab'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[3][7]." </STRONG></div><div class=\"col-sm-3\">: ". $row['oslab'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[3][8]." </STRONG></div><div class=\"col-sm-3\">: ". $row['awa'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>GPA </STRONG></div><div class="col-sm-3">: '. $row['gpa'] .'
+            </div>';
+            echo '<div class="col-sm-6">
+            <STRONG>CGPA </STRONG></div><div class="col-sm-3">: '. $row['cgpa'] .'
+            </div>';
         }
         else if($sem[1]=='sem5')
         {
-
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[4][0]." </STRONG></div><div class=\"col-sm-3\">: ". $row['ant'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[4][1]." </STRONG></div><div class=\"col-sm-3\">: ". $row['cn'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[4][2]." </STRONG></div><div class=\"col-sm-3\">: ". $row['mpmc'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[4][3]." </STRONG></div><div class=\"col-sm-3\">: ". $row['toc'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[4][4]." </STRONG></div><div class=\"col-sm-3\">: ". $row['ooad'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[4][5]." </STRONG></div><div class=\"col-sm-3\">: ". $row['oe1'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[4][6]." </STRONG></div><div class=\"col-sm-3\">: ". $row['mpmclab'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[4][7]." </STRONG></div><div class=\"col-sm-3\">: ". $row['ooadlab'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[4][8]." </STRONG></div><div class=\"col-sm-3\">: ". $row['cnlab'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>GPA </STRONG></div><div class="col-sm-3">: '. $row['gpa'] .'
+            </div>';
+            echo '<div class="col-sm-6">
+            <STRONG>CGPA </STRONG></div><div class="col-sm-3">: '. $row['cgpa'] .'
+            </div>';
         }
         else if($sem[1]=='sem6')
         {
-
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[5][0]." </STRONG></div><div class=\"col-sm-3\">: ". $row['ip'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[5][1]." </STRONG></div><div class=\"col-sm-3\">: ". $row['ai'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[5][2]." </STRONG></div><div class=\"col-sm-3\">: ". $row['mc'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[5][3]." </STRONG></div><div class=\"col-sm-3\">: ". $row['cd'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[5][4]." </STRONG></div><div class=\"col-sm-3\">: ". $row['ds'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[5][5]." </STRONG></div><div class=\"col-sm-3\">: ". $row['pe1'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[5][6]." </STRONG></div><div class=\"col-sm-3\">: ". $row['iplab'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[5][7]." </STRONG></div><div class=\"col-sm-3\">: ". $row['madlab'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[5][8]." </STRONG></div><div class=\"col-sm-3\">: ". $row['minipr'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>GPA </STRONG></div><div class="col-sm-3">: '. $row['gpa'] .'
+            </div>';
+            echo '<div class="col-sm-6">
+            <STRONG>CGPA </STRONG></div><div class="col-sm-3">: '. $row['cgpa'] .'
+            </div>';
         }
         else if($sem[1]=='sem7')
         {
-
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[6][0]." </STRONG></div><div class=\"col-sm-3\">: ". $row['pom'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[6][1]." </STRONG></div><div class=\"col-sm-3\">: ". $row['cns'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[6][2]." </STRONG></div><div class=\"col-sm-3\">: ". $row['cc'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[6][3]." </STRONG></div><div class=\"col-sm-3\">: ". $row['oe2'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[6][4]." </STRONG></div><div class=\"col-sm-3\">: ". $row['pe2'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[6][5]." </STRONG></div><div class=\"col-sm-3\">: ". $row['pe3'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[6][6]." </STRONG></div><div class=\"col-sm-3\">: ". $row['cclab'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[6][7]." </STRONG></div><div class=\"col-sm-3\">: ". $row['seclab'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>GPA </STRONG></div><div class="col-sm-3">: '. $row['gpa'] .'
+            </div>';
+            echo '<div class="col-sm-6">
+            <STRONG>CGPA </STRONG></div><div class="col-sm-3">: '. $row['cgpa'] .'
+            </div>';
         }
         else if($sem[1]=='sem8')
         {
-
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[7][0]." </STRONG></div><div class=\"col-sm-3\">: ". $row['pe4'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[7][1]." </STRONG></div><div class=\"col-sm-3\">: ". $row['pe5'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>'.$subjects[7][2]." </STRONG></div><div class=\"col-sm-3\">: ". $row['project'] ."
+            </div>";
+            echo '<div class="col-sm-6">
+            <STRONG>GPA </STRONG></div><div class="col-sm-3">: '. $row['gpa'] .'
+            </div>';
+            echo '<div class="col-sm-6">
+            <STRONG>CGPA </STRONG></div><div class="col-sm-3">: '. $row['cgpa'] .'
+            </div>';
         }
 
         echo'<H5 class="w3-xxxlarge" style="font-size: 30px!important;font-weight: bold;">ATTENDANCE:</H5>
@@ -468,7 +639,7 @@ body {font-family: sans-serif}
         echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
     }
 } else{
-    echo "Oops! Something went wrong. Please try again later.";
+    echo '<div class="alert alert-danger"><em>No records were found!.</em></div>';
 }
 
         // Close connection
@@ -484,7 +655,7 @@ else{
                     echo '<table  class="table table-bordered table-striped" id="customers">';
                     echo "<thead>";
                     echo "<tr>";
-                    echo "<th>ID</th>";
+                    echo "<th>S.NO.</th>";
                     echo "<th>NAME</th>";
                     echo "<th>REGISTER NUMBER</th>";
                     echo "</tr>";
@@ -492,10 +663,11 @@ else{
                     echo "<tbody>";
                     while($row = mysqli_fetch_array($result)){
                         echo "<tr>";
-                        echo "<td>" . $row['id'] . "</td>";
+                        echo "<td>" . $count. "</td>";
                         echo "<td><a href=\"summary.php?name=".$_GET['name']."&batch=".$_GET['batch']."&id=".$row['rollno']."\">". $row['name'] . "</a></td>";
                         echo "<td>" . $row['rollno'] . "</td>";
                         echo "</tr>";
+                        $count=$count+1;
                     }
                     echo "</tbody>";                            
                     echo "</table>";
@@ -505,7 +677,7 @@ else{
                     echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo '<div class="alert alert-danger"><em>No records were found!.</em></div>';
             }
 
     // Close connection

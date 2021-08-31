@@ -51,38 +51,51 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 
 
     // Check input errors before inserting in database
-    if(empty($name_err) && empty($reg_err)){ 
+    // if(empty($name_err) && empty($reg_err)){ 
         // Prepare an update statement
         $db_conn=get_db_connection();
-        $sql = "UPDATE ".$_GET['batch']." SET name='".$_POST['name']."',fathername='".$_POST['fathername']."',mothername='".$_POST['mothername']."',dob='".$_POST['dob']."',schoolname='".$_POST['schoolname']."',sslc='".$_POST['sslc']."',hsc='".$_POST['hsc']."',address='".$_POST['address']."' WHERE rollno='".$_POST['id']."'";
-        $sql1="UPDATE ".$_GET['name']." SET name='".$_POST['name']."',attendance='".$_POST['attendance']."',office_name='".$_POST['office_name']."',domain='".$_POST['domain']."',duration_intern='".$_POST['duration_intern']."',start_intern='".$_POST['start_intern']."',end_intern='".$_POST['end_intern']."',ecube_topic='".$_POST['ecube_topic']."',company_name='".$_POST['company_name']."',visit_date='".$_POST['visit_date']."',summary_iv='".$_POST['summary_iv']."',comm_eng='".$_POST['comm_eng']."',math='".$_POST['math']."',eng_phy='".$_POST['eng_phy']."',eng_che='".$_POST['eng_che']."',pspp='".$_POST['pspp']."',eng_gra='".$_POST['eng_gra']."',pspplab='".$_POST['pspplab']."',pclab='".$_POST['pclab']."',gpa='".$_POST['gpa']."',cgpa='".$_POST['cgpa']."' WHERE rollno=".$_POST['id']."";
+       
 
-       if($result = mysqli_multi_query($db_conn, $sql))
+        
+
+    if(isset($_POST['submit1']))
+    {
+         $sql = "INSERT INTO ".$_GET['batch']." (rollno,name,fathername,mothername,dob,schoolname,sslc,hsc,address,mail) VALUES ('".$_POST['id']."','".$_POST['name']."','".$_POST['fathername']."','".$_POST['mothername']."','".$_POST['dob']."','".$_POST['schoolname']."','".$_POST['sslc']."','".$_POST['hsc']."','".$_POST['address']."','".$_POST['mail']."')";
+        if($result = mysqli_multi_query($db_conn, $sql))
        {
-        if($result = mysqli_multi_query($db_conn, $sql1))
-        {
-            header("location: semester.php?name=".$_GET['name']."&batch=".$_GET['batch']);
-            exit();
-        }else{
-            $flag=2
-            }
+        $flag=1;
         } 
         else{
-            $flag=2
+        $flag=2;
+       }
+         mysqli_close($db_conn);
+        
+    } 
+    if(isset($_POST['submit2']))
+    {
+        $sql1="INSERT INTO ".$_GET['name']." (name,rollno,attendance,office_name,domain,duration_intern,start_intern,end_intern,ecube_topic,company_name,visit_date,summary_iv,comm_eng,math,eng_phy,eng_che,pspp,eng_gra,pspplab,pclab,gpa,cgpa) VALUES ('".$_POST['name']."','".$_POST['id']."','".$_POST['attendance']."','".$_POST['office_name']."','".$_POST['domain']."','".$_POST['duration_intern']."','".$_POST['start_intern']."','".$_POST['end_intern']."','".$_POST['ecube_topic']."','".$_POST['company_name']."','".$_POST['visit_date']."','".$_POST['summary_iv']."','".$_POST['comm_eng']."','".$_POST['math']."','".$_POST['eng_phy']."','".$_POST['eng_che']."','".$_POST['pspp']."','".$_POST['eng_gra']."','".$_POST['pspplab']."','".$_POST['pclab']."','".$_POST['gpa']."','".$_POST['cgpa']."')";
+        if($result = mysqli_multi_query($db_conn, $sql1))
+       {
+        $flag=1;
+        } 
+        else{
+        $flag=2;
             }
              mysqli_close($db_conn);
-        }
+        
+    }      
 
     // Close connection
    
-} 
+
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>EDIT | MSEC</title>
+    <title>ADD | MSEC</title>
     <link rel="icon" href="https://californiaena.org/wp-content/uploads/2017/12/graduation-cap.png" type="image/gif" sizes="16x16">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -91,6 +104,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -99,6 +113,24 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    
+    <script>
+    $(document).ready(function(){
+      $("#academic1").click(function(){
+        $("#personal").hide();
+        $("#academic").show();
+        $("#academic1").addClass('active');
+        $("#personal1").removeClass('active');
+
+      });
+      $("#personal1").click(function(){
+        $("#personal").show();
+        $("#academic").hide();
+        $("#personal1").addClass('active');
+        $("#academic1").removeClass('active');
+      });
+    });
+    </script>
     <style>
         .wrapper{
             width: 600px;
@@ -152,6 +184,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                 background-color: rgba(204, 255, 255, 0.3);
                 width: 40%;
                 margin-left:9%;
+                margin-bottom:6%;
                 height: 70%;
                 box-shadow: 1px 1px 1px 1px #888888;
                 border-radius: 1%;
@@ -283,7 +316,8 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         <a class="w3-bar-item w3-leftbar w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
         
-        <a class="w3-bar-item w3-button active" href="#"><i class='fas fa-edit'></i>&nbsp;EDIT</a>
+        
+
         <?php
         if($sem[1]=='sem1')
             echo'<a class="w3-bar-item w3-button" href="semester.php?name='.$_GET['name'].'&batch='.$_GET['batch'].'"><i class=\'fas fa-school\'></i> &nbsp;SEMESTER 1</a>';
@@ -303,6 +337,8 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             echo'<a class="w3-bar-item w3-button" href="semester.php?name='.$_GET['name'].'&batch='.$_GET['batch'].'"><i class=\'fas fa-school\'></i> &nbsp;SEMESTER 8</a>';
         ?>
         
+        <a class="w3-bar-item w3-button sub" id="personal1" href="#" ><i class='fas fa-user-graduate'></i>&nbsp;Personal-ADD </a>
+        <a class="w3-bar-item w3-button active sub" id="academic1" href="#" ><i class='fas fa-book-reader'></i>&nbsp;Academic-ADD</a>
         
     </nav>
 
@@ -402,7 +438,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         ?>
 
     </header>
-     <?php
+    <?php
        if(isset($_POST['submit1'])||isset($_POST['submit2'])){
       if($flag==1){
       ?>
@@ -420,28 +456,18 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
       }
       }
       ?>
+
     <SECTION>
-         <div >
+         <div id="personal" style="display: none;">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <center><h2 class="mt-5" style=" font-weight: bolder;">MAKE THE CHANGES &nbsp;<i class='fas fa-edit'></i></h2></center><center>
+                        <center><h2 class="mt-5" style=" font-weight: bolder;">ADD DETAILS &nbsp;<i class='fas fa-edit'></i></h2></center><center>
 
-                        <p style="text-align: center; color: red; font-weight: bold;">* REQUIRED FIELD <br> EDIT AND HIT SAVE</p></center>
+
+                        <p style="text-align: center; color: red; font-weight: bold;">* REQUIRED FIELD <br> ENTER AND HIT SAVE</p></center>
                         <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
-                                            <?php
-                                        // Include config file
-                                       if(isset($_GET['id']))
-                                       {
-                                       $db_conn=get_db_connection();
-                                        // Attempt select query execution
-
-                                       $sql = "SELECT * FROM ".$_GET['name']." LEFT JOIN ".$_GET['batch']." ON ".$_GET['name'].".rollno=".$_GET['batch'].".rollno WHERE ".$_GET['name'].".rollno=".$_GET['id'].";";
-                                       if($result = mysqli_query($db_conn, $sql))
-                                       {
-                                        if(mysqli_num_rows($result) > 0)
-                                        {
-                                            $row = mysqli_fetch_array($result); ?>
+                                            
 
                             <section class="details" ><div class="form-group">
                                 <center>
@@ -449,27 +475,27 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 
                                        <h4 style="text-align:center;">STUDENT DETAILS</h4>
                                        <label >Name *</label>
-                                       <input type="text" name="name" <?php echo'class="form-control';echo (!empty($name_err)) ? 'is-invalid' : ''; echo'" value="'.$row['name'].'"'; ?>>
+                                       <input type="text" name="name" <?php echo'class="form-control';echo (!empty($name_err)) ? 'is-invalid' : ''; echo'" '; ?>>
                                        <span class="invalid-feedback"><?php echo $name_err;?></span>
                                    </div><br>
                                    <div class="form-group">
                                     <label>Register Number *</label>
-                                    <input type="number"   name="id" <?php echo'class="form-control'; echo (!empty($reg_err)) ? 'is-invalid' : ''; echo'" value="'.$row['rollno'].'"'; ?>>
+                                    <input type="number"   name="id" <?php echo'class="form-control'; echo (!empty($reg_err)) ? 'is-invalid' : ''; echo'" '; ?>>
                                     <span class="invalid-feedback"><?php echo $reg_err;?></span>
                                 </div>
                                 <div class="form-group">
                                     <label>SSLC % *</label>
-                                    <input type="text"  name="sslc" class="form-control" <?php echo'value="'.$row['sslc'].'"';?> >
+                                    <input type="text"  name="sslc" class="form-control"  >
                                     <span class="invalid-feedback"><?php echo $reg_err;?></span>
                                 </div>
                                 <div class="form-group">
                                     <label>HSC % *</label>
-                                    <input type="text" style="margin-bottom: 5%;"  name="hsc" class="form-control" <?php echo'value="'.$row['hsc'].'"';?> >
+                                    <input type="text" style="margin-bottom: 5%;"  name="hsc" class="form-control"  >
                                     <span class="invalid-feedback"><?php echo $reg_err;?></span>
                                 </div>
                                 <div class="form-group">
-                                    <label>Attendance *</label>
-                                    <input type="text" style="margin-bottom: 5%;"  name="attendance" class="form-control" <?php echo'value="'.$row['attendance'].'"';?> >
+                                    <label>Mail ID *</label>
+                                    <input type="emailid" style="margin-bottom: 5%;"  name="mail" class="form-control"  >
                                     <span class="invalid-feedback"><?php echo $reg_err;?></span>
                                 </div>
                             </div></center> 
@@ -481,34 +507,64 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 
                                    <h4 style="text-align:center;">PERSONAL DETAILS</h4>
                                    <label >Father Name *</label>
-                                   <input type="text" name="fathername" class="form-control" <?php echo'value="'.$row['fathername'].'"';?>>
+                                   <input type="text" name="fathername" class="form-control" >
                                    <span class="invalid-feedback"><?php echo $name_err;?></span>
                                </div><br>
                                <div class="form-group">
                                 <label>Mother Name *</label>
-                                <input type="text"   name="mothername" class="form-control"<?php echo'value="'.$row['mothername'].'"';?>>
+                                <input type="text"   name="mothername" class="form-control">
                                 <span class="invalid-feedback"><?php echo $reg_err;?></span>
                             </div>
                             <div class="form-group">
                                 <label>HSC School Name *</label>
-                                <input type="text"  name="schoolname" class="form-control" <?php echo'value="'.$row['schoolname'].'"';?>>
+                                <input type="text"  name="schoolname" class="form-control" >
                                 <span class="invalid-feedback"><?php echo $reg_err;?></span>
                             </div>
                             <div class="form-group">
                                 <label>Date Of Birth *</label>
-                                <input type="text" style="margin-bottom: 5%;"  name="dob" class="form-control" <?php echo'value="'.$row['dob'].'"';?>>
+                                <input type="text" style="margin-bottom: 5%;"  name="dob" class="form-control" >
                                 <span class="invalid-feedback"><?php echo $reg_err;?></span>
                             </div>
                             <div class="form-group">
                                 <label>Address *</label>
-                                <input type="text" style="margin-bottom: 5%;"  name="address" class="form-control" <?php echo'value="'.$row['address'].'"';?>>
+                                <input type="text" style="margin-bottom: 5%;"  name="address" class="form-control" >
                                 <span class="invalid-feedback"><?php echo $reg_err;?></span>
                             </div>
                         </div></center> 
                     </section>
 
+                                
+                                <center>
+                                    <input style=" margin-left: 6%;  color: #000033; width: 10% !important; font-weight: bolder;  background-color: #CCFFFF; !important; border-color: #000033; !important; " type="submit" name="submit1" class="btn btn-primary"  value="SAVE">
+                                    <a href="sem1.php" style="   color: #000033; font-weight: bolder; background-color: #CCFFFF; border-color:#000033; width: 10%" class="btn btn-secondary ml-2">CANCEL</a><br><br></center>
+                                </form>
+                            </div>
+                        </div>        
+                    </div>
+                </div>
+
+        <div id="academic">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <center><h2 class="mt-5" style=" font-weight: bolder;">ADD DETAILS &nbsp;<i class='fas fa-edit'></i></h2></center><center>
+
+                        <p style="text-align: center; color: red; font-weight: bold;">* REQUIRED FIELD <br> ENTER AND HIT SAVE</p></center>
+                        <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
+
                     <section class="mark"><br>
-                        <h4 style="text-align:center;">
+                        <center><div>
+                                       <h4 style="text-align:center;">STUDENT DETAILS</h4>
+                                       <label >Name *</label>
+                                       <input type="text" name="name" <?php echo'class="form-control';echo (!empty($name_err)) ? 'is-invalid' : ''; echo'" '; ?>>
+                                       <span class="invalid-feedback"><?php echo $name_err;?></span>
+                                   </div><br>
+                                   <div class="form-group">
+                                    <label>Register Number *</label>
+                                    <input type="number"   name="id" <?php echo'class="form-control'; echo (!empty($reg_err)) ? 'is-invalid' : ''; echo'" '; ?>>
+                                    <span class="invalid-feedback"><?php echo $reg_err;?></span>
+                                </div></center><br>
+                                <h4 style="text-align:center;">
                             <?php   if($sem[1]=='sem1') echo'SEMESTER 1 ACADEMIC DETAILS';
                                     else if($sem[1]=='sem2') echo'SEMESTER 2 ACADEMIC DETAILS';
                                     else if($sem[1]=='sem3') echo'SEMESTER 3 ACADEMIC DETAILS';
@@ -524,42 +580,42 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         echo'
                             <div class="row g-3">
                             <div class="col-sm-3"><label style="margin-left: 5%;">'.$subjects[0][0].' * :</label></div>
-                            <div class="col-sm-3"><input type="text" style="margin-bottom: 5%; "  name="comm_eng" value="'.$row['comm_eng'].'"></div>
+                            <div class="col-sm-3"><input type="text" style="margin-bottom: 5%; "  name="comm_eng" ></div>
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         ';
                         echo'<div class="col-sm-3">
                             <label style="margin-left: 5%;">'.$subjects[0][1].' * :</label></div><div class="col-sm-3">
-                            <input type="text" style="margin-bottom: 5%; "  name="math" value="'.$row['math'].'">
+                            <input type="text" style="margin-bottom: 5%; "  name="math" >
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         </div></div>';
                         echo'<div class="row g-3"><div class="col-sm-3">
                             <label style="margin-left: 5%;">'.$subjects[0][2].' * :</label></div><div class="col-sm-3">
-                            <input type="text" style="margin-bottom: 5%; "  name="eng_phy" value="'.$row['eng_phy'].'">
+                            <input type="text" style="margin-bottom: 5%; "  name="eng_phy" >
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         </div>';
                         echo'<div class="col-sm-3">
                             <label style="margin-left: 5%;">'.$subjects[0][3].' * :</label></div><div class="col-sm-3">
-                            <input type="text" style="margin-bottom: 5%; "  name="eng_che" value="'.$row['eng_che'].'">
+                            <input type="text" style="margin-bottom: 5%; "  name="eng_che" >
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         </div></div>';
                         echo'<div class="row g-3"><div class="col-sm-3">
                             <label style="margin-left: 5%;">'.$subjects[0][4].' * :</label></div><div class="col-sm-3">
-                            <input type="text" style="margin-bottom: 5%; "  name="pspp" value="'.$row['pspp'].'">
+                            <input type="text" style="margin-bottom: 5%; "  name="pspp" >
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         </div>';
                         echo'<div class="col-sm-3">
                             <label style="margin-left: 5%;">'.$subjects[0][5].' * :</label></div><div class="col-sm-3">
-                            <input type="text" style="margin-bottom: 5%; "  name="eng_gra" value="'.$row['eng_gra'].'">
+                            <input type="text" style="margin-bottom: 5%; "  name="eng_gra" >
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         </div></div>';
                         echo'<div class="row g-3"><div class="col-sm-3">
                             <label style="margin-left: 5%;">'.$subjects[0][6].' * :</label></div><div class="col-sm-3">
-                            <input type="text" style="margin-bottom: 5%; "  name="pspplab" value="'.$row['pspplab'].'">
+                            <input type="text" style="margin-bottom: 5%; "  name="pspplab" >
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         </div>';
                         echo'<div class="col-sm-3">
                             <label style="margin-left: 5%;">'.$subjects[0][7].' * :</label></div><div class="col-sm-3">
-                            <input type="text" style="margin-bottom: 5%; "  name="pclab" value="'.$row['pclab'].'">
+                            <input type="text" style="margin-bottom: 5%; "  name="pclab" >
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         </div></div>';
 
@@ -568,42 +624,42 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                        {
                         echo'<div class="row g-3"><div class="col-sm-3">
                             <label style="margin-left: 40%;">'.$subjects[1][0].' * :</label></div><div class="col-sm-3">
-                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['tech_eng'].'">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" >
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         </div>';
                         echo'<div class="col-sm-3">
                             <label style="margin-left: 40%;">'.$subjects[1][1].' * :</label></div><div class="col-sm-3">
-                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['math'].'">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" >
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         </div></div>';
                         echo'<div class="row g-3"><div class="col-sm-3">
                             <label style="margin-left: 40%;">'.$subjects[1][2].' * :</label></div><div class="col-sm-3">
-                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['phy_is'].'">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" >
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         </div>';
                         echo'<div class="col-sm-3">
                             <label style="margin-left: 40%;">'.$subjects[1][3].' * :</label></div><div class="col-sm-3">
-                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['beeme'].'">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" >
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         </div></div>';
                         echo'<div class="row g-3"><div class="col-sm-3">
                             <label style="margin-left: 40%;">'.$subjects[1][4].' * :</label></div><div class="col-sm-3">
-                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['evs'].'">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" >
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         </div>';
                         echo'<div class="col-sm-3">
                             <label style="margin-left: 40%;">'.$subjects[1][5].' * :</label></div><div class="col-sm-3">
-                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['p_in_c'].'">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" >
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         </div></div>';
                         echo'<div class="row g-3"><div class="col-sm-3">
                             <label style="margin-left: 40%;">'.$subjects[1][6].' * :</label></div><div class="col-sm-3">
-                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['eplab'].'">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" >
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         </div>';
                         echo'<div class="col-sm-3">
                             <label style="margin-left: 40%;">'.$subjects[1][7].' * :</label></div><div class="col-sm-3">
-                            <input type="text" style="margin-bottom: 5%; "  name="reg" value="'.$row['clab'].'">
+                            <input type="text" style="margin-bottom: 5%; "  name="reg" >
                             <span class="invalid-feedback"><?php echo $reg_err;?></span>
                         </div></div>';
 
@@ -611,16 +667,22 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                        
                             <div class="row g-3"><div class="col-sm-3">
                                 <label style="margin-left: 5%; ">GPA * :</label></div><div class="col-sm-3">
-                                <input type="text" style="margin-bottom: 5%; "  name="gpa" <?php echo'value="'.$row['gpa'].'"';?>>
+                                <input type="text" style="margin-bottom: 5%; "  name="gpa">
                                 <span class="invalid-feedback"><?php echo $reg_err;?></span>
                             </div>
 
                             <div class="col-sm-3">
                                 <label style="margin-left: 5%; ">CGPA * :</label></div><div class="col-sm-3">
-                                <input type="text" style="margin-bottom: 5%; "  name="cgpa" <?php echo'value="'.$row['cgpa'].'"';?>>
+                                <input type="text" style="margin-bottom: 5%; "  name="cgpa" >
                                 <span class="invalid-feedback"><?php echo $reg_err;?></span>
-                            </div><br></div><div>
+                            </div><br></div><div><br>
 
+                                <center><div>
+                                       <h4 style="text-align:center;">ATTENDANCE</h4><br>
+                                       <div class="form-group" ><label >No.of Days Present *</label>
+                                       <input type="text" name="attendance" <?php echo'class="form-control';echo (!empty($name_err)) ? 'is-invalid' : ''; echo'" '; ?>>
+                                       <span class="invalid-feedback"><?php echo $name_err;?></span>
+                                   </div></div><br><br></center>
                         </section>
 
 
@@ -631,30 +693,30 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 
                                 <div class="form-group" style="display: inline-block;">
                                     <label style="margin-left: 4%;">Office Name *</label>
-                                    <input type="text" style="margin-bottom: 5%; "  name="office_name" <?php echo'value="'.$row['office_name'].'"';?>>
+                                    <input type="text" style="margin-bottom: 5%; "  name="office_name" >
                                     <span class="invalid-feedback"><?php echo $reg_err;?></span>
                                 </div>
 
                                 <div class="form-group" style="display: inline-block;">
                                     <label style="margin-left: 4%;">Domain *</label>
-                                    <input type="text" style="margin-bottom: 5%; "  name="domain" <?php echo'value="'.$row['domain'].'"';?>>
+                                    <input type="text" style="margin-bottom: 5%; "  name="domain" >
                                     <span class="invalid-feedback"><?php echo $reg_err;?></span>
                                 </div><br>
                                 <div class="form-group" style="display: inline-block;">
                                     <label style="margin-left: 4%;">Duration * :</label>
-                                    <input type="text" style="margin-bottom: 5%; "  name="duration_intern" <?php echo'value="'.$row['duration_intern'].'"';?>>
+                                    <input type="text" style="margin-bottom: 5%; "  name="duration_intern" >
                                     <span class="invalid-feedback"><?php echo $reg_err;?></span>
                                 </div>
 
                                 <div class="form-group" style="display: inline-block;">
                                     <label style="margin-left: 4%;">Start Date* :</label>
-                                    <input type="text" style="margin-bottom: 5%; "  name="start_intern" <?php echo'value="'.$row['start_intern'].'"';?>>
+                                    <input type="text" style="margin-bottom: 5%; "  name="start_intern" >
                                     <span class="invalid-feedback"><?php echo $reg_err;?></span>
                                 </div>
 
                                 <div class="form-group" style="display: inline-block;">
                                     <label style="margin-left: 4%;">End Date * :</label>
-                                    <input type="text" style="margin-bottom: 5%; "  name="end_intern" <?php echo'value="'.$row['end_intern'].'"';?>>
+                                    <input type="text" style="margin-bottom: 5%; "  name="end_intern" >
                                     <span class="invalid-feedback"><?php echo $reg_err;?></span>
                                 </div><br>
                             </center><br>
@@ -663,19 +725,19 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                             <center>
                                 <div class="form-group" style="display: inline-block;">
                                     <label style="margin-left: 4%;">Company Name *</label>
-                                    <input type="text" style="margin-bottom: 5%; "  name="company_name" <?php echo'value="'.$row['company_name'].'"';?>>
+                                    <input type="text" style="margin-bottom: 5%; "  name="company_name" >
                                     <span class="invalid-feedback"><?php echo $reg_err;?></span>
                                 </div>
 
                                 <div class="form-group" style="display: inline-block;">
                                     <label style="margin-left: 4%;">Visit Date *</label>
-                                    <input type="text" style="margin-bottom: 5%; "  name="visit_date" <?php echo'value="'.$row['visit_date'].'"';?>>
+                                    <input type="text" style="margin-bottom: 5%; "  name="visit_date" >
                                     <span class="invalid-feedback"><?php echo $reg_err;?></span>
                                 </div>
 
                                 <div class="form-group" >
                                     <label style="margin-left: 4%;">Summary * :</label>
-                                    <input type="text" style=" width:70%;" name="summary_iv" <?php echo'value="'.$row['summary_iv'].'"';?>>
+                                    <input type="text" style=" width:70%;" name="summary_iv" >
                                     <span class="invalid-feedback"><?php echo $reg_err;?></span>
                                 </div><br></center>
 
@@ -685,7 +747,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                 <center>
                                     <div class="form-group" style="display: inline-block;">
                                         <label >Topic *:</label>
-                                        <input type="text"   name="ecube_topic" <?php echo'value="'.$row['ecube_topic'].'"';?>>
+                                        <input type="text"   name="ecube_topic" >
                                         <span class="invalid-feedback"><?php echo $reg_err;?></span>
                                     </div>
 
@@ -694,29 +756,16 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                 </section>
 
                                 
-                               <?php 
-                               mysqli_free_result($result);
-                                } 
-                                else{
-                                    echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
-                                }
-                                } else{
-                                    echo "Oops! Something went wrong. Please try again later.";
-                                }
-
-                                        // Close connection
-                                mysqli_close($db_conn);
-                                }
-                                ?> 
-                                
                                 <center>
-                                    <input style=" margin-left: 6%;  color: #000033; width: 10% !important; font-weight: bolder;  background-color: #CCFFFF; !important; border-color: #000033; !important; " type="submit" class="btn btn-primary"  value="SAVE">
+                                    <input style=" margin-left: 6%;  color: #000033; width: 10% !important; font-weight: bolder;  background-color: #CCFFFF; !important; border-color: #000033; !important; " type="submit" name="submit2"class="btn btn-primary"  value="SAVE">
                                     <a href="sem1.php" style="   color: #000033; font-weight: bolder; background-color: #CCFFFF; border-color:#000033; width: 10%" class="btn btn-secondary ml-2">CANCEL</a><br><br></center>
                                 </form>
                             </div>
                         </div>        
                     </div>
-                </div></SECTION>
+                </div>
+
+            </SECTION>
 
                 <footer  style=" padding:32px; background-color:#000015; text-align: center; color:#FF6600; text-decoration: none;font-size:180%;">
                  <p style="color:#FF6600;">&copy; <a href="http://www.msec.edu.in/" title="W3.CSS" target="_blank" class="w3-hover-text-green" style="margint-left: 15%;color:#FF6600; ">MSEC</a></p>

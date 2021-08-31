@@ -98,25 +98,25 @@ else {
       </div>
 
       <div id="batch1" class="w3-container menu w3-padding-32 w3-white">
-        <h1><b>FIRST YEAR</b> <span class="w3-right w3-tag w3-green w3-round"><a style="text-decoration: none; font-size:20px;" href="">NAME LIST</a></span></h1>
+        <h1><b>FIRST YEAR</b> </h1>
 
         <p ><a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch1sem1&batch=batch1" style="text-decoration: none; font-size: 70%; font-family: Herculanum;">SEMESTER 1</a> &emsp; 
           <a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch1sem2&batch=batch1" style="text-decoration: none; font-size: 50%; font-family: Herculanum;">SEMESTER 2</a></p>
           <hr>
           
-          <h1><b>SECOND YEAR</b> <span class="w3-right w3-tag w3-green w3-round"><a style="text-decoration: none;font-size:20px;" href="">NAME LIST</a></span></h1>
+          <h1><b>SECOND YEAR</b> </h1>
 
           <p ><a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch1sem3&batch=batch1" style="text-decoration: none; font-size: 70%; font-family: Herculanum;">SEMESTER 3</a> &emsp; 
             <a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch1sem4&batch=batch1" style="text-decoration: none; font-size: 50%; font-family: Herculanum;">SEMESTER 4</a></p>
             <hr>
 
-            <h1><b>THIRD YEAR</b> <span class="w3-right w3-tag w3-green w3-round"><a style="text-decoration: none;font-size:20px;" href="">NAME LIST</a></span></h1>
+            <h1><b>THIRD YEAR</b> </h1>
 
             <p ><a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch1sem5&batch=batch1" style="text-decoration: none; font-size: 70%; font-family: Herculanum;">SEMESTER 5</a> &emsp; 
               <a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch1sem6&batch=batch1" style="text-decoration: none; font-size: 50%; font-family: Herculanum;">SEMESTER 6</a></p>
               <hr>
 
-              <h1><b>FOURTH YEAR</b> <span class="w3-right w3-tag w3-green w3-round"><a style="text-decoration: none;font-size:20px;" href="">NAME LIST</a></span></h1>
+              <h1><b>FOURTH YEAR</b> </h1>
 
               <p ><a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch1sem7&batch=batch1" style="text-decoration: none; font-size: 70%; font-family: Herculanum;">SEMESTER 7</a> &emsp; 
                 <a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch1sem8&batch=batch1" style="text-decoration: none; font-size: 50%; font-family: Herculanum;">SEMESTER 8</a></p>
@@ -126,25 +126,25 @@ else {
               </div>
 
               <div id="Pasta" class="w3-container menu w3-padding-32 w3-white">
-                <h1><b>FIRST YEAR</b> <span class="w3-right w3-tag w3-green w3-round"><a style="text-decoration: none; font-size:20px;" href="">NAME LIST</a></span></h1>
+                <h1><b>FIRST YEAR</b> </h1>
 
                 <p ><a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch2sem1&batch=batch2" style="text-decoration: none; font-size: 70%; font-family: Herculanum;">SEMESTER 1</a> &emsp; 
                   <a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch2sem2&batch=batch1" style="text-decoration: none; font-size: 50%; font-family: Herculanum;">SEMESTER 2</a></p>
                   <hr>
                   
-                  <h1><b>SECOND YEAR</b> <span class="w3-right w3-tag w3-green w3-round"><a style="text-decoration: none;font-size:20px;" href="">NAME LIST</a></span></h1>
+                  <h1><b>SECOND YEAR</b> </h1>
 
                   <p ><a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch2sem3&batch=batch2" style="text-decoration: none; font-size: 70%; font-family: Herculanum;">SEMESTER 3</a> &emsp; 
                     <a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch2sem4&batch=batch2" style="text-decoration: none; font-size: 50%; font-family: Herculanum;">SEMESTER 4</a></p>
                     <hr>
 
-                    <h1><b>THIRD YEAR</b> <span class="w3-right w3-tag w3-green w3-round"><a style="text-decoration: none;font-size:20px;" href="">NAME LIST</a></span></h1>
+                    <h1><b>THIRD YEAR</b> </h1>
 
                     <p ><a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch2sem5&batch=batch2" style="text-decoration: none; font-size: 70%; font-family: Herculanum;">SEMESTER 5</a> &emsp; 
                       <a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch2sem6&batch=batch1" style="text-decoration: none; font-size: 50%; font-family: Herculanum;">SEMESTER 6</a></p>
                       <hr>
 
-                      <h1><b>FOURTH YEAR</b> <span class="w3-right w3-tag w3-green w3-round"><a style="text-decoration: none;font-size:20px;" href="">NAME LIST</a></span></h1>
+                      <h1><b>FOURTH YEAR</b> </h1>
 
                       <p ><a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch2sem7&batch=batch2" style="text-decoration: none; font-size: 70%; font-family: Herculanum;">SEMESTER 7</a> &emsp; 
                         <a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch2sem8&batch=batch1" style="text-decoration: none; font-size: 50%; font-family: Herculanum;">SEMESTER 8</a></p>
@@ -153,25 +153,25 @@ else {
 
 
                       <div id="Starter" class="w3-container menu w3-padding-32 w3-white">
-                       <h1><b>FIRST YEAR</b> <span class="w3-right w3-tag w3-green w3-round"><a style="text-decoration: none; font-size:20px;" href="">NAME LIST</a></span></h1>
+                       <h1><b>FIRST YEAR</b> </h1>
 
                        <p ><a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch3sem1&batch=batch3" style="text-decoration: none; font-size: 70%; font-family: Herculanum;">SEMESTER 1</a> &emsp; 
                         <a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch3sem2&batch=batch3" style="text-decoration: none; font-size: 50%; font-family: Herculanum;">SEMESTER 2</a></p>
                         <hr>
                         
-                        <h1><b>SECOND YEAR</b> <span class="w3-right w3-tag w3-green w3-round"><a style="text-decoration: none;font-size:20px;" href="">NAME LIST</a></span></h1>
+                        <h1><b>SECOND YEAR</b> </h1>
 
                         <p ><a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch3sem3&batch=batch3" style="text-decoration: none; font-size: 70%; font-family: Herculanum;">SEMESTER 3</a> &emsp; 
                           <a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch3sem4&batch=batch3" style="text-decoration: none; font-size: 50%; font-family: Herculanum;">SEMESTER 4</a></p>
                           <hr>
 
-                          <h1><b>THIRD YEAR</b> <span class="w3-right w3-tag w3-green w3-round"><a style="text-decoration: none;font-size:20px;" href="">NAME LIST</a></span></h1>
+                          <h1><b>THIRD YEAR</b> </h1>
 
                           <p ><a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch3sem5&batch=batch3" style="text-decoration: none; font-size: 70%; font-family: Herculanum;">SEMESTER 5</a> &emsp; 
                             <a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch3sem6&batch=batch3" style="text-decoration: none; font-size: 50%; font-family: Herculanum;">SEMESTER 6</a></p>
                             <hr>
 
-                            <h1><b>FOURTH YEAR</b> <span class="w3-right w3-tag w3-green w3-round"><a style="text-decoration: none;font-size:20px;" href="">NAME LIST</a></span></h1>
+                            <h1><b>FOURTH YEAR</b> </h1>
 
                             <p ><a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch3sem7&batch=batch3" style="text-decoration: none; font-size: 70%; font-family: Herculanum;">SEMESTER 7</a> &emsp; 
                               <a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch3sem8&batch=batch3" style="text-decoration: none; font-size: 50%; font-family: Herculanum;">SEMESTER 8</a></p>
@@ -180,25 +180,25 @@ else {
 
 
                             <div id="batch" class="w3-container menu w3-padding-32 w3-white">
-                             <h1><b>FIRST YEAR</b> <span class="w3-right w3-tag w3-green w3-round"><a style="text-decoration: none; font-size:20px;" href="">NAME LIST</a></span></h1>
+                             <h1><b>FIRST YEAR</b> </h1>
 
                              <p ><a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch4sem1&batch=batch4" style="text-decoration: none; font-size: 70%; font-family: Herculanum;">SEMESTER 1</a> &emsp; 
                               <a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch4sem2&batch=batch4" style="text-decoration: none; font-size: 50%; font-family: Herculanum;">SEMESTER 2</a></p>
                               <hr>
                               
-                              <h1><b>SECOND YEAR</b> <span class="w3-right w3-tag w3-green w3-round"><a style="text-decoration: none;font-size:20px;" href="">NAME LIST</a></span></h1>
+                              <h1><b>SECOND YEAR</b> </h1>
 
                               <p ><a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch4sem3&batch=batch4" style="text-decoration: none; font-size: 70%; font-family: Herculanum;">SEMESTER 3</a> &emsp; 
                                 <a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch4sem4&batch=batch4" style="text-decoration: none; font-size: 50%; font-family: Herculanum;">SEMESTER 4</a></p>
                                 <hr>
 
-                                <h1><b>THIRD YEAR</b> <span class="w3-right w3-tag w3-green w3-round"><a style="text-decoration: none;font-size:20px;" href="">NAME LIST</a></span></h1>
+                                <h1><b>THIRD YEAR</b> </h1>
 
                                 <p ><a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch4sem5&batch=batch4" style="text-decoration: none; font-size: 70%; font-family: Herculanum;">SEMESTER 5</a> &emsp; 
                                   <a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch4sem6&batch=batch4" style="text-decoration: none; font-size: 50%; font-family: Herculanum;">SEMESTER 6</a></p>
                                   <hr>
 
-                                  <h1><b>FOURTH YEAR</b> <span class="w3-right w3-tag w3-green w3-round"><a style="text-decoration: none;font-size:20px;" href="">NAME LIST</a></span></h1>
+                                  <h1><b>FOURTH YEAR</b> </h1>
 
                                   <p ><a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch4sem7&batch=batch4" style="text-decoration: none; font-size: 70%; font-family: Herculanum;">SEMESTER 7</a> &emsp; 
                                     <a class="w3-button w3-large w3-blue" style="" href="semester.php?name=batch4sem8&batch=batch4" style="text-decoration: none; font-size: 50%; font-family: Herculanum;">SEMESTER 8</a></p>
