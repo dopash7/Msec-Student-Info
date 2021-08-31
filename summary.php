@@ -245,13 +245,14 @@ body {font-family: sans-serif}
 
        <H3 class="w3-xxxlarge" style="font-size: 40px!important;font-weight: bold;">INDIVIDUAL INFO:</H3>
        <a href="add.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>" class="btn btn-success pull-left" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-plus"></i><b>  ADD</b></a> &nbsp; &nbsp;
-        <a href="update.php?id=<?php echo$_GET['rollno']; ?>&name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>" class="btn btn-success pull-left" style="margin-left: 10px;background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-pencil"></i><b>  EDIT</b></a>
-       <br><br><br>
+        
 
        <?php
         // Include config file
        if(isset($_GET['id']))
        {
+        echo'<a href="update.php?id='.$_GET['rollno'].'&name='.$_GET[\'name'].'&batch='.$_GET['batch'].' class="btn btn-success pull-left" style="margin-left: 10px;background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-pencil"></i><b>  EDIT</b></a>
+       <br><br><br>';
        $db_conn=get_db_connection();
         // Attempt select query execution
 
