@@ -2,6 +2,7 @@
 
 require_once "library/auth.php";
 
+
 if(isset($_COOKIE['username']) and isset($_COOKIE['token'])) 
 {
   $username = $_COOKIE['username'];
@@ -244,15 +245,15 @@ body {font-family: sans-serif}
     <div class="w3-container" style="padding:32px">
 
        <H3 class="w3-xxxlarge" style="font-size: 40px!important;font-weight: bold;">INDIVIDUAL INFO:</H3>
-       <a href="add.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>" class="btn btn-success pull-left" style="background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-plus"></i><b>  ADD</b></a> &nbsp; &nbsp;
-        
+       <div style="display:inline-block;">
+       <a href="add.php?name=<?php echo$_GET['name']; ?>&batch=<?php echo$_GET['batch']; ?>" class="btn btn-success " style="float:left;background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-plus"></i><b>  ADD</b></a> </div>
+        <div style="display:inline-block;margin-left: 10px;">
 
        <?php
         // Include config file
        if(isset($_GET['id']))
        {
-        echo'<a href="update.php?id='.$_GET['rollno'].'&name='.$_GET[\'name'].'&batch='.$_GET['batch'].' class="btn btn-success pull-left" style="margin-left: 10px;background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-pencil"></i><b>  EDIT</b></a>
-       <br><br><br>';
+        
        $db_conn=get_db_connection();
         // Attempt select query execution
 
@@ -261,8 +262,14 @@ body {font-family: sans-serif}
        {
         if(mysqli_num_rows($result) > 0)
         {
+
             $row = mysqli_fetch_array($result);
+            echo'<a href="update.php?id='.$row['rollno'].'&name='.$_GET['name'].'&batch='.$_GET['batch'].'" class="btn btn-success " style="float:right;background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-pencil"></i><b>  EDIT</b></a></div>
+            <button onclick="Export2Word(\'exportContent\', \''.$row['name'].'\');" class="btn btn-success pull-right" style="float:right;background-color: #76C893; border-color: #76C893; color: black;"><i class="fa fa-download" aria-hidden="true"></i><b>  EXPORT</b></button>
+       <br><br>';
+       
            echo'
+           <div id="exportContent">
            <div class="col-md col-lg">
            
            <div class="row g-3">
@@ -312,6 +319,7 @@ body {font-family: sans-serif}
 
            <H4 class="w3-xxxlarge" style="font-size: 30px!important;font-weight: bold;">ACADEMIC DETAILS:</H4>
            ';
+           
            if($sem[1]=='sem1')
            {
             echo '<div class="col-sm-3">
@@ -344,6 +352,7 @@ body {font-family: sans-serif}
             echo '<div class="col-sm-3">
             <STRONG>CGPA </STRONG></div><div class="col-sm-3">:  '. $row['cgpa'] .'
             </div>';
+            
         }
         else if($sem[1]=='sem2')
         {
@@ -377,6 +386,7 @@ body {font-family: sans-serif}
             echo '<div class="col-sm-6">
             <STRONG>CGPA </STRONG></div><div class="col-sm-3">: '. $row['cgpa'] .'
             </div>';
+            
         }
         else if($sem[1]=='sem3')
         {
@@ -413,6 +423,7 @@ body {font-family: sans-serif}
             echo '<div class="col-sm-6">
             <STRONG>CGPA </STRONG></div><div class="col-sm-3">: '. $row['cgpa'] .'
             </div>';
+            
         }
         else if($sem[1]=='sem4')
         {
@@ -449,6 +460,7 @@ body {font-family: sans-serif}
             echo '<div class="col-sm-6">
             <STRONG>CGPA </STRONG></div><div class="col-sm-3">: '. $row['cgpa'] .'
             </div>';
+           
         }
         else if($sem[1]=='sem5')
         {
@@ -485,6 +497,7 @@ body {font-family: sans-serif}
             echo '<div class="col-sm-6">
             <STRONG>CGPA </STRONG></div><div class="col-sm-3">: '. $row['cgpa'] .'
             </div>';
+           
         }
         else if($sem[1]=='sem6')
         {
@@ -521,6 +534,7 @@ body {font-family: sans-serif}
             echo '<div class="col-sm-6">
             <STRONG>CGPA </STRONG></div><div class="col-sm-3">: '. $row['cgpa'] .'
             </div>';
+           
         }
         else if($sem[1]=='sem7')
         {
@@ -554,6 +568,7 @@ body {font-family: sans-serif}
             echo '<div class="col-sm-6">
             <STRONG>CGPA </STRONG></div><div class="col-sm-3">: '. $row['cgpa'] .'
             </div>';
+            
         }
         else if($sem[1]=='sem8')
         {
@@ -572,6 +587,7 @@ body {font-family: sans-serif}
             echo '<div class="col-sm-6">
             <STRONG>CGPA </STRONG></div><div class="col-sm-3">: '. $row['cgpa'] .'
             </div>';
+            
         }
 
         echo'<H5 class="w3-xxxlarge" style="font-size: 30px!important;font-weight: bold;">ATTENDANCE:</H5>
@@ -629,8 +645,9 @@ body {font-family: sans-serif}
 
         </div>
 
+        </div>
         </div>';
-        
+       
 
                 // Free result set
         mysqli_free_result($result);
@@ -731,7 +748,43 @@ else{
             x.previousElementSibling.className.replace(" w3-theme", "");
         }
     }
+    function Export2Word(element, filename = ''){
+    var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+    var postHtml = "</body></html>";
+    var html = preHtml+document.getElementById(element).innerHTML+postHtml;
+
+    var blob = new Blob(['\ufeff', html], {
+        type: 'application/msword'
+    });
+    
+    // Specify link url
+    var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+    
+    // Specify file name
+    filename = filename?filename+'.doc':'document.doc';
+    
+    // Create download link element
+    var downloadLink = document.createElement("a");
+
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob ){
+        navigator.msSaveOrOpenBlob(blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = url;
+        
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+    
+    document.body.removeChild(downloadLink);
+}
 </script>
 
 </body>
 </html> 
+

@@ -15,6 +15,7 @@ if(isset($_COOKIE['username']) and isset($_COOKIE['token'])){
 
 $flag = 0;
 if(isset($_POST['username']) and isset($_POST['password'])){
+ 
   if(do_login($_POST['username'], $_POST['password'])){
     header("Location: home.php");
     //this header Location: home.php will redirect the user to home on successful login.

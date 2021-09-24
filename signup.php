@@ -16,8 +16,14 @@ if(isset($_POST['password']) and isset($_POST['cpassword'])){
 	$password = $_POST['password'];
 	$cpassword = $_POST['cpassword'];
 	$emailid = $_POST['emailid'];
+ 	$uppercase = preg_match('@[A-Z]@', $password);
+ 	$lowercase = preg_match('@[a-z]@', $password);
+ 	$number    = preg_match('@[0-9]@', $password);
 
-	if($password == $cpassword){
+  	if(!$uppercase || !$lowercase || !$number || strlen($password) < 8) {
+  	  $flag = 2;
+  	}
+	else if($password == $cpassword){
 		$sresult = do_signup($username, $password,$emailid);
 		if($sresult){
 			header("Location: index.php?signup=success");
@@ -65,7 +71,13 @@ if(isset($_POST['password']) and isset($_POST['cpassword'])){
 	<main class="form-signin">
 	<form class="form-signin" action="signup.php" method="POST">
 		<?php
-		if($flag == -1){
+		if($flag == 2){
+			?>
+			<div class="alert alert-danger" role="alert">
+				Password do not match the base requirements(Minimum one capital letter,one small letter,one number.Minimum length 8 characters.)
+			</div>
+			<?php
+		} else if($flag == -1){
 			?>
 			<div class="alert alert-danger" role="alert">
 				Password and confirm password do not match

@@ -536,7 +536,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                 
                                 <center>
                                     <input style=" margin-left: 6%;  color: #000033; width: 10% !important; font-weight: bolder;  background-color: #CCFFFF; !important; border-color: #000033; !important; " type="submit" name="submit1" class="btn btn-primary"  value="SAVE">
-                                    <a href="sem1.php" style="   color: #000033; font-weight: bolder; background-color: #CCFFFF; border-color:#000033; width: 10%" class="btn btn-secondary ml-2">CANCEL</a><br><br></center>
+                                    <a href="home.php" style="   color: #000033; font-weight: bolder; background-color: #CCFFFF; border-color:#000033; width: 10%" class="btn btn-secondary ml-2">CANCEL</a><br><br></center>
                                 </form>
                             </div>
                         </div>        
@@ -758,7 +758,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                 
                                 <center>
                                     <input style=" margin-left: 6%;  color: #000033; width: 10% !important; font-weight: bolder;  background-color: #CCFFFF; !important; border-color: #000033; !important; " type="submit" name="submit2"class="btn btn-primary"  value="SAVE">
-                                    <a href="sem1.php" style="   color: #000033; font-weight: bolder; background-color: #CCFFFF; border-color:#000033; width: 10%" class="btn btn-secondary ml-2">CANCEL</a><br><br></center>
+                                    <a href="home.php" style="   color: #000033; font-weight: bolder; background-color: #CCFFFF; border-color:#000033; width: 10%" class="btn btn-secondary ml-2">CANCEL</a><br><br></center>
                                 </form>
                             </div>
                         </div>        
